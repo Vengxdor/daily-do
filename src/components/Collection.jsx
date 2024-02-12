@@ -3,22 +3,22 @@ import React, { useEffect, useState } from 'react'
 export function CollectionModal () {
   // const storageCollections = JSON.parse(localStorage.getItem('listCollections'))
   const [listCollections, setListCollections] = useState(() => {
-    const storageCollections = JSON.parse(localStorage.getItem('listOfBooks'))
+    const storageCollections = JSON.parse(localStorage.getItem('listCollections'))
     return storageCollections || []
   })
 
+  const [collectionName, setCollectionName] = useState('')
+
   const addCollection = (e) => {
     e.preventDefault()
-    // Get the value from the input
-    const collection = new FormData(e.target)
-    const collectionName = collection.get('name')
-
+    if (collectionName === '') return
     const uniqueId = Date.now() + '-' + Math.floor(Math.random() * 1000)
     // push the new collection to an array with a unique Id
     setListCollections([
       ...listCollections,
       { collectionName, id: uniqueId }
     ])
+    setCollectionName('')
   }
 
   useEffect(() => {
@@ -79,7 +79,7 @@ export function CollectionModal () {
                 <span className='sr-only'>Close modal</span>
               </button>
             </div>
-            <form onSubmit={addCollection} className='p-4 md:p-5'>
+            <form className='p-4 md:p-5'>
               <div className='grid gap-4 mb-4 grid-cols-2'>
                 <div className='col-span-2'>
                   <label
@@ -89,6 +89,8 @@ export function CollectionModal () {
                     Name
                   </label>
                   <input
+                    value={collectionName}
+                    onChange={(e) => setCollectionName(e.target.value)}
                     type='text'
                     name='name'
                     id='name'
@@ -100,6 +102,7 @@ export function CollectionModal () {
                 </div>
               </div>
               <button
+                onClick={addCollection}
                 type='submit'
                 data-modal-hide='crud-modal'
                 className='text-white inline-flex items-center bg-primary hover:bg-pink-800 focus:ring-4 focus:outline-none focus:ring-red-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center  '
