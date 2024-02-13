@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react'
+import { useCollection } from '../hooks/useCollection'
 
 export function CollectionModal () {
   // const storageCollections = JSON.parse(localStorage.getItem('listCollections'))
-  const [listCollections, setListCollections] = useState(() => {
-    const storageCollections = JSON.parse(localStorage.getItem('listCollections'))
-    return storageCollections || []
-  })
+  const { listCollections, setListCollections } = useCollection()
 
   const [collectionName, setCollectionName] = useState('')
 
@@ -26,7 +24,7 @@ export function CollectionModal () {
       'listCollections',
       JSON.stringify(listCollections)
     )
-    // console.log(storageCollections)
+    console.log(listCollections)
   }, [listCollections])
 
   return (

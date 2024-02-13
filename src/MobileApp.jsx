@@ -1,18 +1,16 @@
 import React from 'react'
-import { CollectionModal } from './components/Collection'
-import { ListOfCollections } from './components/ListOfCollections'
+import { Route, Routes } from 'react-router-dom'
+import CollectionPage from './pages/CollectionPage'
+import CollectionHome from './pages/CollectionHome'
 
 function MobileApp () {
   return (
     <>
-      <header className='flex items-center p-10 gap-3'>
-        <h2 className='text-4xl font-semibold'>Collections</h2>
-        <CollectionModal />
-      </header>
+      <Routes>
+        <Route path='/' element={<CollectionHome />} />
+        <Route path='/:collectionName/:collectionId' element={<CollectionPage />} />
+      </Routes>
 
-      <main>
-        <ListOfCollections />
-      </main>
     </>
   )
 }

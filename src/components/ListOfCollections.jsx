@@ -1,20 +1,20 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
+import { useCollection } from '../hooks/useCollection'
+
+// router
+import { Link } from 'react-router-dom'
 
 export function ListOfCollections () {
-  const [collections] = useState(
-    JSON.parse(window.localStorage.getItem('listCollections')) || []
-  )
+  const { listCollections } = useCollection()
   // localStorage.clear()
-  useEffect(() => {
-    console.log(collections)
-  }, [collections])
 
   return (
     <ul>
-      {collections.map((collection, index) => (
+      {listCollections.map((collection, index) => (
         <li key={index}>
-          <p>{collection.collectionName}</p>
-          <p>{collection.id}d</p>
+          <Link to={`/${collection.collectionName}/${collection.id}`}>
+            {collection.collectionName}
+          </Link>
         </li>
       ))}
     </ul>
