@@ -12,7 +12,7 @@ export function ListOfCollections () {
     <ul>
       {listCollections.map((collection, index) => (
         <li key={index}>
-          <Link to={`/${collection.collectionName}/${collection.id}`}>
+          <Link className='text-lg underline text-blue-600' to={`/${collection.collectionName}/${collection.id}`}>
             {collection.collectionName}
           </Link>
         </li>

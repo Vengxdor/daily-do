@@ -5,8 +5,8 @@ import { CollectionModal } from '../components/Collection'
 function CollectionHome () {
   return (
     <>
-    <header className='flex items-center p-10 gap-3'>
-        <h2 className='text-4xl font-semibold'>Collections</h2>
+    <header className='flex items-center px-7 h-20 gap-3'>
+        <h2 className='text-3xl font-semibold'>Collections</h2>
         <CollectionModal />
       </header>
 
