@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom'
 
 export function ListOfCollections () {
   const { listCollections } = useCollection()
-  // localStorage.clear()
 
   return (
     <ul>

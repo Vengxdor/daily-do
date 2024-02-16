@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { createContext, useState } from 'react'
+import React, { createContext, useEffect, useState } from 'react'
 
 export const collectionContext = createContext()
 
@@ -8,6 +8,12 @@ export function CollectionProvider ({ children }) {
     const storageCollections = JSON.parse(localStorage.getItem('listCollections'))
     return storageCollections || []
   })
+  useEffect(() => {
+    window.localStorage.setItem(
+      'listCollections',
+      JSON.stringify(listCollections)
+    )
+  }, [listCollections])
   return (
     <collectionContext.Provider value={{ listCollections, setListCollections }}>
       {children}
