@@ -79,7 +79,7 @@ export function CollectionModal () {
                       type='text'
                       name='name'
                       id='name'
-                      className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 focus:border-primary focus-within:border-opacity-60'
+                      className=' border text-white text-sm rounded-lg focus:ring-primary-600 focus:border-primary block w-full p-2.5 bg-gray-600 border-gray-500 outline-none'
                       placeholder='Type collection name'
                       required=''
                       autoComplete='off'

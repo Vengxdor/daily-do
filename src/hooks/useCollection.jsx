@@ -3,5 +3,12 @@ import { collectionContext } from '../context/collectionContext'
 
 export function useCollection () {
   const { listCollections, setListCollections } = useContext(collectionContext)
-  return { listCollections, setListCollections }
+
+  // return
+  const deleteCollection = (collectionId) => {
+    const updatedCollection = listCollections.filter(collection => collection.id !== collectionId)
+    setListCollections(updatedCollection)
+  }
+
+  return { listCollections, setListCollections, deleteCollection }
 }

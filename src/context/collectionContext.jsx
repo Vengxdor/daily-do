@@ -8,12 +8,14 @@ export function CollectionProvider ({ children }) {
     const storageCollections = JSON.parse(localStorage.getItem('listCollections'))
     return storageCollections || []
   })
+
   useEffect(() => {
     window.localStorage.setItem(
       'listCollections',
       JSON.stringify(listCollections)
     )
   }, [listCollections])
+
   return (
     <collectionContext.Provider value={{ listCollections, setListCollections }}>
       {children}

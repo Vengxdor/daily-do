@@ -9,11 +9,8 @@ function Task ({ collectionId }) {
 
   const handleTask = (e) => {
     e.preventDefault()
-    if (newTasks === '') return
-    setTasks([
-      ...tasks,
-      { name: newTasks, id: collectionId }
-    ])
+    if (newTasks.trim(' ') === '') return
+    setTasks([...tasks, { name: newTasks, id: collectionId, isDone: false }])
     setModalOpen(false)
     setNewTask('')
   }
@@ -21,11 +18,13 @@ function Task ({ collectionId }) {
   return (
     <>
       {/* <!-- Modal toggle --> */}
-      <button
-        className='block text-white p-3 bg-primary fa-solid fa-plus rounded-full hover:bg-pink-800'
-        type='button'
-        onClick={() => setModalOpen(!isModalOpen)}
-      ></button>
+      <div className='absolute flex w-full inset-0 mb-10 -z-10 justify-center items-end '>
+        <button
+          className='block text-white p-5  bg-primary fa-solid fa-plus rounded-xl hover:bg-pink-800'
+          type='button'
+          onClick={() => setModalOpen(!isModalOpen)}
+        ></button>
+      </div>
 
       {/* <!-- Main modal --> */}
       {isModalOpen && (
@@ -79,7 +78,7 @@ function Task ({ collectionId }) {
                       type='text'
                       name='name'
                       id='name'
-                      className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 focus:border-primary focus-within:border-opacity-60'
+                      className='border text-sm rounded-lg focus:ring-primary-600 border-primary-600 block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white focus:ring-primary-500 focus:border-primary focus-within:border-opacity-60 outline-none'
                       placeholder='Type tasks'
                       required=''
                       autoComplete='off'
@@ -110,7 +109,10 @@ function Task ({ collectionId }) {
           </div>
 
           {/* background Opacity */}
-          <div onClick={() => setModalOpen(false)} className='bg-black/20 w-screen h-screen inset-0 absolute z-10'></div>
+          <div
+            onClick={() => setModalOpen(false)}
+            className='bg-black/20 w-screen h-screen inset-0 absolute z-10'
+          ></div>
         </section>
       )}
     </>

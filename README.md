@@ -1,8 +1,17 @@
-# React + Vite
+# DailyDo Tasks app
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+DailyDo was created using react and tailwindcss
 
-Currently, two official plugins are available:
+### Objetives
+- [x] The user should be able to create a collections of tasks and eliminate them if wanted.
+- [x] The user should be able to create tasks, modify them and eliminate them.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [ ] The tasks could contains the tasks it self, if is complited or not, nested tasks example: **Do my chores** (wash the dishes, mop the floor, etc.)  
+
+
+- [x] The tasks and collections should be storage in the local storage.
+
+- [ ] Create a system so the user would be able to login and have an account to store his tasks
+
+### Inspiration
+- I inspirate the design in a dribbble creator ([Oliver Cederborg](https://dribbble.com/shots/15185058-Collection-Tasks))
