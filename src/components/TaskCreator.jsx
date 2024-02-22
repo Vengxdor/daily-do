@@ -2,7 +2,8 @@
 import React, { useState } from 'react'
 import { useTasks } from '../hooks/useTasks'
 
-function Task ({ collectionId }) {
+function TaskCreator ({ collectionId }) {
+  // toggle modal
   const [isModalOpen, setModalOpen] = useState(false)
   const { tasks, setTasks } = useTasks()
   const [newTasks, setNewTask] = useState('')
@@ -10,15 +11,16 @@ function Task ({ collectionId }) {
   const handleTask = (e) => {
     e.preventDefault()
     if (newTasks.trim(' ') === '') return
-    setTasks([...tasks, { name: newTasks, id: collectionId, isDone: false }])
-    setModalOpen(false)
+    const uniqueId = Date.now() + Math.floor(Math.random() * 1000) // create a random Id
+    setTasks([...tasks, { name: newTasks, taskId: uniqueId, idCollection: collectionId, isDone: false }])
+    setModalOpen(false) // toggle modal
     setNewTask('')
   }
 
   return (
     <>
       {/* <!-- Modal toggle --> */}
-      <div className='absolute flex w-full inset-0 mb-10 -z-10 justify-center items-end '>
+      <div className='absolute flex  inset-0 mb-10 -z-10 justify-center items-end '>
         <button
           className='block text-white p-5  bg-primary fa-solid fa-plus rounded-xl hover:bg-pink-800'
           type='button'
@@ -30,7 +32,7 @@ function Task ({ collectionId }) {
       {isModalOpen && (
         <section
           tabIndex='-1'
-          className=' flex overflow-y-hidden overflow-x-hidden fixed top-0 right-0 left-0  justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full'
+          className='z-10 flex overflow-y-hidden overflow-x-hidden fixed top-0 right-0 left-0  justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full'
         >
           <div className='relative p-4 w-full max-w-md max-h-full z-50'>
             {/* <!-- Modal content --> */}
@@ -119,4 +121,4 @@ function Task ({ collectionId }) {
   )
 }
 
-export default Task
+export default TaskCreator

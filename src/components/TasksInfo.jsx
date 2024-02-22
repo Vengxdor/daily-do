@@ -1,25 +1,27 @@
 /* eslint-disable react/prop-types */
 import React from 'react'
+import { useTasks } from '../hooks/useTasks'
 
-export function TasksInfo ({ info, deleteTask }) {
-  // const cosa = deleteTask()
+export function TasksInfo ({ info }) {
+  const { deleteTask, toggleTaskStatus } = useTasks()
   return (
     <div className='flex justify-between'>
       <div className='flex gap-3'>
         <div className='relative flex justify-center items-center'>
           <input
-            className='bg-zinc-900 p-3 rounded-xl border-2 border-primary checked:bg-primary appearance-none transition-colors duration-300'
+            className={` p-3 rounded-xl border-2 border-primary ${info.isDone ? 'bg-primary' : 'bg-zinc-800'} appearance-none transition-colors duration-300`}
             type='checkbox'
+            onChange={() => toggleTaskStatus(info.taskId)}
           />
           <i
             className={
-              `fa-solid fa-check absolute pointer-events-none ${info.isDone ? 'visible opacity-100' : 'opacity-0 invisible'}`
+              `fa-solid fa-check absolute pointer-events-none text-black ${info.isDone ? 'visible opacity-100' : 'opacity-0 invisible'}`
             }
           ></i>
         </div>
-        <span>{info.name}</span>
+        <span >{info.name}</span>
       </div>
-      <button onClick={() => deleteTask(info.id)} className='fa-solid fa-trash text-red-500 cursor-pointer'></button>
+      <button onClick={() => deleteTask(info.taskId)} className='fa-solid fa-trash text-red-500 cursor-pointer'></button>
     </div>
   )
 }

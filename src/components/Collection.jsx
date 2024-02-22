@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { useCollection } from '../hooks/useCollection'
 
 export function CollectionModal () {
-  // const storageCollections = JSON.parse(localStorage.getItem('listCollections'))
   const { listCollections, setListCollections } = useCollection()
   const [isModalOpen, setModalOpen] = useState(false)
   const [collectionName, setCollectionName] = useState('')

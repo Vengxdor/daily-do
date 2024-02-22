@@ -78,8 +78,10 @@ function DeleteCollectionBtn ({
               </div>
             </div>
           </div>
-          <div onClick={() => setDeleteOpen(false)} className='bg-black/20 w-screen h-screen inset-0 absolute z-10'></div>
-
+          <div
+            onClick={() => setDeleteOpen(false)}
+            className='bg-black/20 w-screen h-screen inset-0 absolute z-10'
+          ></div>
         </div>
       )}
     </>
