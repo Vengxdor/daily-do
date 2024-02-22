@@ -12,7 +12,15 @@ function TaskCreator ({ collectionId }) {
     e.preventDefault()
     if (newTasks.trim(' ') === '') return
     const uniqueId = Date.now() + Math.floor(Math.random() * 1000) // create a random Id
-    setTasks([...tasks, { name: newTasks, taskId: uniqueId, idCollection: collectionId, isDone: false }])
+    setTasks([
+      ...tasks,
+      {
+        name: newTasks,
+        taskId: uniqueId,
+        idCollection: collectionId,
+        isDone: false
+      }
+    ])
     setModalOpen(false) // toggle modal
     setNewTask('')
   }
@@ -20,7 +28,7 @@ function TaskCreator ({ collectionId }) {
   return (
     <>
       {/* <!-- Modal toggle --> */}
-      <div className='absolute flex  inset-0 mb-10 -z-10 justify-center items-end '>
+      <div className='absolute flex inset-0 mb-16 -z-10 justify-center items-end '>
         <button
           className='block text-white p-5  bg-primary fa-solid fa-plus rounded-xl hover:bg-pink-800'
           type='button'
