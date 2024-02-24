@@ -18,9 +18,9 @@ export function CollectionModal () {
 
   return (
     <>
-      {/* <!-- Modal toggle --> */}
+      {/* <!-- Modal toggle btn --> */}
       <button
-        className='block text-white p-3 bg-primary fa-plus fa-solid rounded-full hover:bg-pink-800'
+        className='fa-plus fa-solid block text-white py-8 rounded-xl border  w-full hover:bg-secundary transition-colors duration-300'
         type='button'
         onClick={() => setModalOpen(!isModalOpen)}
       >

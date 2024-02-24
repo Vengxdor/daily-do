@@ -1,22 +1,26 @@
 /* eslint-disable react/prop-types */
-import React from 'react'
+import React, { useState } from 'react'
 
-function DeleteCollectionBtn ({
-  isDeleteOpen,
-  setDeleteOpen,
+function DeleteCollectionModal ({
   deleteCollection,
   collectionId
 }) {
+  const [isDeleteOpen, setDeleteOpen] = useState(false)
+
   const handleCollection = () => {
     deleteCollection(collectionId)
     setDeleteOpen(false)
   }
   return (
     <>
+      <button
+        onClick={() => setDeleteOpen(!isDeleteOpen)}
+        className='fa-solid fa-x '
+      ></button>
       {isDeleteOpen && (
         <div
           tabIndex='-1'
-          className='flex overflow-y-hidden overflow-x-hidden fixed top-0 right-0 left-0  justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full'
+          className='flex overflow-y-hidden z-50 overflow-x-hidden fixed top-0 right-0 left-0  justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full'
         >
           <div className='relative p-4 w-full max-w-md max-h-full z-50'>
             <div className='relative bg-white rounded-lg shadow dark:bg-gray-700'>
@@ -88,4 +92,4 @@ function DeleteCollectionBtn ({
   )
 }
 
-export default DeleteCollectionBtn
+export default DeleteCollectionModal
