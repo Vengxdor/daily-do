@@ -6,9 +6,25 @@ export function useCollection () {
 
   // return
   const deleteCollection = (collectionId) => {
-    const updatedCollection = listCollections.filter(collection => collection.id !== collectionId)
+    const updatedCollection = listCollections.filter(
+      (collection) => collection.id !== collectionId
+    )
     setListCollections(updatedCollection)
   }
 
-  return { listCollections, setListCollections, deleteCollection }
+  const toggleExpanded = (collectionId) => {
+    const expandedCollection = listCollections.map((collection) =>
+      collection.id === collectionId
+        ? { ...collection, expanded: !collection.expanded }
+        : collection
+    )
+    setListCollections(expandedCollection)
+  }
+
+  return {
+    listCollections,
+    setListCollections,
+    deleteCollection,
+    toggleExpanded
+  }
 }

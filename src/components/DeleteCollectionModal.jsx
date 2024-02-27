@@ -1,10 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react'
 
-function DeleteCollectionModal ({
-  deleteCollection,
-  collectionId
-}) {
+function DeleteCollectionModal ({ deleteCollection, collectionId }) {
   const [isDeleteOpen, setDeleteOpen] = useState(false)
 
   const handleCollection = () => {
@@ -15,7 +12,7 @@ function DeleteCollectionModal ({
     <>
       <button
         onClick={() => setDeleteOpen(!isDeleteOpen)}
-        className='fa-solid fa-x '
+        className='fa-solid fa-xmark text-xl opacity-80 p-0.5'
       ></button>
       {isDeleteOpen && (
         <div

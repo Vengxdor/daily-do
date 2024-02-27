@@ -40,7 +40,7 @@ const ProgressBar = ({ totalTasks, completedTasks }) => {
         cx={9}
         cy={9}
         strokeWidth={3}
-        stroke='rgba(41, 90, 149, 1)'
+        stroke='rgb(3, 138, 207)'
         strokeLinecap='round'
         strokeDasharray={circumference}
         strokeDashoffset={dashOffset}

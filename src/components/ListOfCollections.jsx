@@ -15,6 +15,7 @@ export function ListOfCollections () {
   return (
     <ul className='w-full p-7 gap-3 grid grid-cols-2'>
       {listCollections.map((collection, index) => {
+        // the tasks of the current collection
         const collectionTasks = tasks.filter(
           (item) => item.idCollection === collection.id
         )
@@ -24,7 +25,7 @@ export function ListOfCollections () {
         ).length
         return (
           <li
-            className=' bg-zinc-700/30 hover:bg-zinc-700/40 border flex relative justify-between border-white border-opacity-20 cursor-pointer  rounded-xl transition-colors duration-300'
+            className=' bg-secundary hover:bg-zinc-700/60 border flex relative justify-between border-white border-opacity-20 cursor-pointer  rounded-xl transition-colors duration-300'
             key={index}
           >
             <Link
@@ -50,7 +51,7 @@ export function ListOfCollections () {
                 </div>
               )}
             </Link>
-            <div className='absolute right-5 mt-3'>
+            <div className='absolute right-3 mt-3'>
               <DeleteCollectionModal
                 collectionId={collection.id}
                 deleteCollection={deleteCollection}

@@ -1,21 +1,14 @@
 /* eslint-disable react/prop-types */
 import React from 'react'
 import { TasksInfo } from '../components/TasksInfo'
-import { useTasks } from '../hooks/useTasks'
 
-function TaskList ({ collectionId }) {
-  const { tasks } = useTasks()
-  const tasksOfCollection = tasks.filter(
-    (item) => item.idCollection === collectionId
-  )
-
+function TaskList ({ tasks }) {
   return (
     <>
-      <span className='opacity-80'>Tasks - {tasksOfCollection.length}</span>
-      {tasksOfCollection
+      {tasks
         ? (
-        <ul className='my-4 flex flex-col gap-2 overflow-y-auto rounded-lg tasks-list'>
-          {tasksOfCollection.map((task, index) => (
+        <ul className=' flex flex-col gap-2 '>
+          {tasks.map((task, index) => (
             <li className='p-4 rounded-xl bg-secundary' key={index}>
               <TasksInfo info={task} />
             </li>

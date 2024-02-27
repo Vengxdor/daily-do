@@ -17,10 +17,6 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-body {
-  /* width: 100dvw; */
-  /* height: 100dvh; */
-}
 code {
   font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
     Bitstream Vera Sans Mono, Courier New, monospace;
@@ -28,4 +24,40 @@ code {
 
 .tasks-list { 
   height: calc(100vh - 17rem);
+}
+
+.close {
+  animation: goUp .2s forwards;
+  transform-origin: top;
+}
+
+.open {
+  animation: goDown .2s forwards;
+  transform-origin: top;
+}
+
+@keyframes goUp {
+  0% {
+    transform: translate(0, 0);
+  }
+  80% {
+    transform: translate(0, -100%);
+
+  }
+  100% {
+    height: 0;
+  }
+}
+
+@keyframes goDown {
+  0% {
+    transform: translate(0, -100%);
+  }
+  80% {
+    transform: translate(0, 0);
+
+  }
+  100% {
+    height: 100%;
+  }
 }

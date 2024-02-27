@@ -2,9 +2,14 @@ import React from 'react'
 import { Link, useParams } from 'react-router-dom'
 import TaskCreator from '../components/TaskCreator'
 import TaskList from '../components/TaskList'
+import { useTasks } from '../hooks/useTasks'
 
 function TasksPages () {
   const { collectionId, collectionName } = useParams()
+  const { tasks } = useTasks()
+  const tasksOfCollection = tasks.filter(
+    (item) => item.idCollection === collectionId
+  )
 
   return (
     <div className='z-10 '>
@@ -18,7 +23,11 @@ function TasksPages () {
       </header>
 
       <main className='px-8'>
-        <TaskList collectionId={collectionId} />
+      <span className='opacity-80'>Tasks - {tasksOfCollection.length}</span>
+      <div className='overflow-y-auto rounded-lg mt-5 tasks-list'>
+
+        <TaskList tasks={tasksOfCollection} />
+      </div>
       </main>
     </div>
   )

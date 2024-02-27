@@ -11,7 +11,7 @@ export function CollectionModal () {
     if (collectionName === '') return
     const uniqueId = Date.now() + '-' + Math.floor(Math.random() * 1000)
     // push the new collection to an array with a unique Id
-    setListCollections([...listCollections, { collectionName, id: uniqueId }])
+    setListCollections([...listCollections, { collectionName, id: uniqueId, expanded: false }])
     setCollectionName('')
     setModalOpen(false)
   }
