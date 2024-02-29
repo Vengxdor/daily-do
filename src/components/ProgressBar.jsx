@@ -15,12 +15,13 @@ const ProgressBar = ({ totalTasks, completedTasks }) => {
         transformOrigin: '50% 50%'
       }}
     >
+
       <circle
         r={7.5}
         cx={9}
         cy={9}
         strokeWidth={3}
-        stroke='rgba(27, 45, 56, 1)'
+        stroke='rgba(255, 255, 255, .4)'
         strokeLinecap='round'
         fill='transparent'
       />
@@ -30,17 +31,7 @@ const ProgressBar = ({ totalTasks, completedTasks }) => {
         cx={9}
         cy={9}
         strokeWidth={3}
-        stroke='rgba(255, 255, 255, 1)'
-        strokeLinecap='round'
-        fill='transparent'
-      />
-
-      <circle
-        r={7.5}
-        cx={9}
-        cy={9}
-        strokeWidth={3}
-        stroke='rgb(3, 138, 207)'
+        stroke='rgb(234, 22, 131)'
         strokeLinecap='round'
         strokeDasharray={circumference}
         strokeDashoffset={dashOffset}

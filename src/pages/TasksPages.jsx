@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link, useParams } from 'react-router-dom'
-import TaskCreator from '../components/TaskCreator'
-import TaskList from '../components/TaskList'
+import TaskCreator from '../components/tasks/TaskCreator'
+import TaskList from '../components/tasks/TaskList'
 import { useTasks } from '../hooks/useTasks'
 
 function TasksPages () {

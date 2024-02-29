@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from 'react'
-import { useTasks } from '../hooks/useTasks'
+import { useTasks } from '../../hooks/useTasks'
 
 export function TasksInfo ({ info }) {
   const { deleteTask, toggleTaskStatus } = useTasks()

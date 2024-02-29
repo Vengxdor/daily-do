@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from 'react'
-import { TasksInfo } from '../components/TasksInfo'
+import { TasksInfo } from './TasksInfo'
 
 function TaskList ({ tasks }) {
   return (

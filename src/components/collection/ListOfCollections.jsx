@@ -1,13 +1,13 @@
 import React from 'react'
-import { useCollection } from '../hooks/useCollection'
+import { useCollection } from '../../hooks/useCollection'
 
 // router
 import { Link } from 'react-router-dom'
 import DeleteCollectionModal from './DeleteCollectionModal'
 import { CollectionIcon } from './CollectionIcon'
 import { CollectionModal } from './CollectionModal'
-import ProgressBar from './ProgressBar'
-import { useTasks } from '../hooks/useTasks'
+import ProgressBar from '../ProgressBar'
+import { useTasks } from '../../hooks/useTasks'
 
 export function ListOfCollections () {
   const { listCollections, deleteCollection } = useCollection()
@@ -40,8 +40,8 @@ export function ListOfCollections () {
                 {collection.collectionName}
               </span>
               {totalTasks !== 0 && (
-                <div className='flex justify-between text-sm opacity-65 items-center'>
-                  <span>
+                <div className='flex justify-between text-sm  items-center'>
+                  <span className='opacity-65'>
                     {completedTasks}/{totalTasks} done
                   </span>
                   <ProgressBar
