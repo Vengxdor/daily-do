@@ -34,9 +34,8 @@ function Landing () {
         </p>
         <div className='flex gap-3 mt-5 *:transition-colors *:duration-300'>
           <Link
-            to={'/'}
+            to={'/Collections'}
             className='p-2 px-4 hover:bg-rose-700 bg-primary shadow shadow-pink-900 rounded-lg'
-            href='./todos'
           >
             Get Started
           </Link>

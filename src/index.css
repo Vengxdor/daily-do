@@ -22,42 +22,36 @@ code {
     Bitstream Vera Sans Mono, Courier New, monospace;
 }
 
-.tasks-list { 
-  height: calc(100vh - 17rem);
+.created-dialog::before {
+  content: '';
+  display: flex;
+  position: absolute;
+  top: -15px;
+  margin: 0 auto;
+  width: 0;
+  height: 0;
+  border-style: solid;
+ border-width: 0 14.5px 17px 14.5px;
+  border-color: transparent transparent #262626 transparent;
 }
 
-.close {
-  animation: goUp .2s forwards;
-  transform-origin: top;
+.created-dialog::after {
+  content: '';
+  display: flex;
+  position: absolute;
+  bottom: 3px;
+  height: 6px;
+  background-color: #ea2088;
+  border-radius: 0 0 0.75rem 0.75rem;
+  animation: load 2.8s forwards;
+  left: 0;
 }
 
-.open {
-  animation: goDown .2s forwards;
-  transform-origin: top;
-}
-
-@keyframes goUp {
-  0% {
-    transform: translate(0, 0);
+@keyframes load {
+  from {
+    width: 0;
   }
-  80% {
-    transform: translate(0, -100%);
-
-  }
-  100% {
-    height: 0;
-  }
-}
-
-@keyframes goDown {
-  0% {
-    transform: translate(0, -100%);
-  }
-  80% {
-    transform: translate(0, 0);
-
-  }
-  100% {
-    height: 100%;
+  to {
+    width: 100%;
   }
 }

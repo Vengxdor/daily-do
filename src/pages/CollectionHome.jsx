@@ -5,14 +5,14 @@ import DashCollectionLink from '../components/DashCollectionLink'
 
 function CollectionHome () {
   return (
-    <>
+    <div className='w-11/12 m-auto sm:w-5/6 '>
       <PageHeader name='Collection' />
 
       <main>
         <DashCollectionLink />
         <ListOfCollections />
       </main>
-    </>
+    </div>
   )
 }
 

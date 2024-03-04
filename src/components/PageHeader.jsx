@@ -3,7 +3,7 @@ import React from 'react'
 
 function PageHeader ({ name }) {
   return (
-    <header className='flex items-center justify-between px-7 h-20 gap-3'>
+    <header className='flex items-center justify-between h-20 gap-3'>
       <h2 className='text-3xl font-semibold'>{name}</h2>
       <img
         className='w-10 rounded-full cursor-pointer'

@@ -8,12 +8,13 @@ import { CollectionIcon } from './CollectionIcon'
 import { CollectionModal } from './CollectionModal'
 import ProgressBar from '../ProgressBar'
 import { useTasks } from '../../hooks/useTasks'
+import SignOutBtn from '../SignOutBtn'
 
 export function ListOfCollections () {
   const { listCollections, deleteCollection } = useCollection()
   const { tasks } = useTasks()
   return (
-    <ul className='w-full p-7 gap-3 grid grid-cols-2'>
+    <ul className='w-full pt-7 gap-3 grid grid-cols-2'>
       {listCollections.map((collection, index) => {
         // the tasks of the current collection
         const collectionTasks = tasks.filter(
@@ -62,6 +63,7 @@ export function ListOfCollections () {
       })}
       <li>
         <CollectionModal />
+        <SignOutBtn />
       </li>
     </ul>
   )

@@ -25,8 +25,10 @@ function TasksPages () {
       <main className='px-8'>
       <span className='opacity-80'>Tasks - {tasksOfCollection.length}</span>
       <div className='overflow-y-auto rounded-lg mt-5 tasks-list'>
-
-        <TaskList tasks={tasksOfCollection} />
+        {tasksOfCollection.length < 1
+          ? <TaskList tasks={tasksOfCollection} />
+          : <p className='text-center'>You have no tasks, Try creating one :)</p>
+        }
       </div>
       </main>
     </div>

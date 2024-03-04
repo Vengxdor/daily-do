@@ -8,9 +8,8 @@ function DashBoadCollection () {
   const { tasks } = useTasks()
   const { listCollections, toggleExpanded } = useCollection()
   return (
-    <ul className='w-full flex flex-col mt-3 gap-3'>
+    <ul className='w-full flex flex-col mt-3 gap-5'>
       {listCollections.map((collection) => {
-        console.log(collection.expanded)
         const tasksOfCollection = tasks
           .filter((item) => item.idCollection === collection.id)
           .slice(0, 2)
