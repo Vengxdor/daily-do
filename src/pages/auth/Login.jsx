@@ -3,21 +3,29 @@ import LoginHeader from '../../components/LoginHeader'
 import { Link } from 'react-router-dom'
 import { auth } from '../../firebase'
 import { signInWithEmailAndPassword } from 'firebase/auth'
+import { useUserAccount } from '../../hooks/useUserAccount'
 function Login () {
   const emailId = useId()
   const passwordId = useId()
   const [email, setEmail] = useState()
   const [password, setPassword] = useState()
 
-  const handleLogin = (e) => {
+  const { setUserAccount } = useUserAccount()
+  const handleLogin = async (e) => {
     e.preventDefault()
-    signInWithEmailAndPassword(auth, email, password)
-      .then(() => {
+    try {
+      const userCredential = await signInWithEmailAndPassword(auth, email, password)
+
+      const user = userCredential.user
+      setUserAccount(user)
+      // if there's a user stored it and redirect to collections
+      if (user) {
+        localStorage.setItem('userAccount', JSON.stringify(user))
         location.href = '/Collections'
-      })
-      .catch((error) => {
-        console.log(error)
-      })
+      }
+    } catch (error) {
+      console.log(error)
+    }
   }
   return (
     <div className='p-5'>

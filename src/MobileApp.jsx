@@ -6,28 +6,20 @@ import DashBoard from './pages/DashBoard'
 import Login from './pages/auth/Login'
 import SignUp from './pages/auth/SignUp'
 import Landing from './pages/Landing'
-import { onAuthStateChanged } from 'firebase/auth'
-import { auth } from './firebase'
-import { useUserAccount } from './hooks/useUserAccount'
 
 function MobileApp () {
-  const { userAccount, setUserAccount } = useUserAccount()
   useEffect(() => {
-    const listen = onAuthStateChanged(auth, userCredential => {
-      setUserAccount(userCredential)
-      const collectionRef = '/Collections'
-      if (location.href.includes(collectionRef)) return
-      if (userAccount) {
-        location.href = collectionRef
-      } else {
-        setUserAccount(null)
-      }
-    })
+    const user = JSON.parse(localStorage.getItem('userAccount'))
+    const collectionRef = '/Collections'
 
-    return () => {
-      listen()
+    if (!user) return
+
+    // redirect the user unless he is in collections
+    if (!location.href.includes(collectionRef)) {
+      location.href = collectionRef
     }
   }, [])
+
   return (
     <>
       <Routes>

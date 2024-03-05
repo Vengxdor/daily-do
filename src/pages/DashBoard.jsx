@@ -13,7 +13,9 @@ function DashBoard () {
 
       <main className='pt-7'>
         <header>
+          {userAccount &&
           <h2 className='text-3xl font-semibold'>Good morning, {userAccount.displayName}</h2>
+          }
         </header>
         <DashBoadCollection />
       </main>

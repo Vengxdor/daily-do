@@ -15,23 +15,24 @@ function SignUp () {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const handleSignUp = (e) => {
+  const handleSignUp = async (e) => {
     e.preventDefault()
-    createUserWithEmailAndPassword(auth, email, password, name)
-      .then(userCredentials => {
-        if (userCredentials) {
-          location.href = '/Collections'
-        }
-        const user = userCredentials.user
-        setUserAccount(user)
-        return updateProfile(user, { displayName: name })
-      })
+    try {
+      const userCredentials = await createUserWithEmailAndPassword(auth, email, password, name)
 
-      .catch(
-        (error) => {
-          console.log(error)
-        }
-      )
+      const user = userCredentials.user
+
+      await updateProfile(user, { displayName: name })
+
+      // if there's a user stored it and redirect to collections
+      if (user) {
+        location.href = '/Collections'
+        setUserAccount(user)
+        localStorage.setItem('userAccount', JSON.stringify(user))
+      }
+    } catch (error) {
+      console.log(error)
+    }
   }
   return (
     <div className='p-5'>
