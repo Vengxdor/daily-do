@@ -15,7 +15,9 @@ function MobileApp () {
     if (!user) return
 
     // redirect the user unless he is in collections
-    if (!location.href.includes(collectionRef)) {
+    if (location.href.includes(collectionRef)) return
+
+    if (user) {
       location.href = collectionRef
     }
   }, [])

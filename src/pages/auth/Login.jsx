@@ -20,7 +20,6 @@ function Login () {
       setUserAccount(user)
       // if there's a user stored it and redirect to collections
       if (user) {
-        localStorage.setItem('userAccount', JSON.stringify(user))
         location.href = '/Collections'
       }
     } catch (error) {

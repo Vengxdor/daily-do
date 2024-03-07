@@ -8,7 +8,7 @@ function SignOutBtn () {
     setUserAccount(null)
     localStorage.removeItem('userAccount')
   }
-  console.log(userAccount)
+  // console.log(userAccount)
   return (
     <>
     {userAccount

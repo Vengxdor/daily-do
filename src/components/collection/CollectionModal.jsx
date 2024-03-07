@@ -2,17 +2,23 @@ import React, { useState } from 'react'
 import { useCollection } from '../../hooks/useCollection'
 
 export function CollectionModal () {
-  const { listCollections, setListCollections } = useCollection()
+  // all the collections that the user has
+  const { listCollections, setListCollections } = useCollection([])
   const [isModalOpen, setModalOpen] = useState(false)
-  const [collectionName, setCollectionName] = useState('')
+  const [newCollection, setNewCollection] = useState('')
 
   const handleCollection = (e) => {
     e.preventDefault()
-    if (collectionName === '') return
+    if (newCollection.trim() === '') return
+
     const uniqueId = Date.now() + '-' + Math.floor(Math.random() * 1000)
+
     // push the new collection to an array with a unique Id
-    setListCollections([...listCollections, { collectionName, id: uniqueId, expanded: true }])
-    setCollectionName('')
+    setListCollections([
+      ...listCollections,
+      { newCollection, id: uniqueId, expanded: true }
+    ])
+    setNewCollection('')
     setModalOpen(false)
   }
 
@@ -23,8 +29,7 @@ export function CollectionModal () {
         className='fa-plus fa-solid block text-white py-8 rounded-xl border  w-full hover:bg-secundary transition-colors duration-300'
         type='button'
         onClick={() => setModalOpen(!isModalOpen)}
-      >
-      </button>
+      ></button>
 
       {/* <!-- Main modal --> */}
       {isModalOpen && (
@@ -73,8 +78,8 @@ export function CollectionModal () {
                       Name
                     </label>
                     <input
-                      value={collectionName}
-                      onChange={(e) => setCollectionName(e.target.value)}
+                      value={newCollection}
+                      onChange={(e) => setNewCollection(e.target.value)}
                       type='text'
                       name='name'
                       id='name'
@@ -109,7 +114,10 @@ export function CollectionModal () {
           </div>
 
           {/* background Opacity */}
-          <div onClick={() => setModalOpen(false)} className='bg-black/20 w-screen h-screen inset-0 absolute z-10'></div>
+          <div
+            onClick={() => setModalOpen(false)}
+            className='bg-black/20 w-screen h-screen inset-0 absolute z-10'
+          ></div>
         </section>
       )}
     </>

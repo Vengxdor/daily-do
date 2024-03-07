@@ -4,6 +4,8 @@ import LoginHeader from '../../components/LoginHeader'
 import { Link } from 'react-router-dom'
 import { auth } from '../../firebase'
 import { useUserAccount } from '../../hooks/useUserAccount'
+import { userCollections } from '../../service/dataCollection'
+import CreatedDialog from '../../components/CreatedDialog'
 
 function SignUp () {
   const { setUserAccount } = useUserAccount()
@@ -14,11 +16,17 @@ function SignUp () {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [isAccountCreated, setAccountCreated] = useState(false)
 
   const handleSignUp = async (e) => {
     e.preventDefault()
     try {
-      const userCredentials = await createUserWithEmailAndPassword(auth, email, password, name)
+      const userCredentials = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password,
+        name
+      )
 
       const user = userCredentials.user
 
@@ -26,16 +34,24 @@ function SignUp () {
 
       // if there's a user stored it and redirect to collections
       if (user) {
-        location.href = '/Collections'
         setUserAccount(user)
-        localStorage.setItem('userAccount', JSON.stringify(user))
+        setAccountCreated(true)
+        setTimeout(() => {
+          location.href = '/Collections'
+        }, 3000)
       }
+
+      // when the user is created, create a place in the data base
+      userCollections(user)
     } catch (error) {
       console.log(error)
     }
   }
   return (
     <div className='p-5'>
+      {isAccountCreated && (
+        <CreatedDialog>Your account has been created. ✅</CreatedDialog>
+      )}
       <LoginHeader text='Sign Up' />
       <form onSubmit={handleSignUp} className='flex flex-col gap-10'>
         <div className='mt-16 flex flex-col gap-3'>
