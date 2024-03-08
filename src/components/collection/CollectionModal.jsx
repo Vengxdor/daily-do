@@ -5,20 +5,20 @@ export function CollectionModal () {
   // all the collections that the user has
   const { listCollections, setListCollections } = useCollection([])
   const [isModalOpen, setModalOpen] = useState(false)
-  const [newCollection, setNewCollection] = useState('')
+  const [collectionName, setCollectionName] = useState('')
 
   const handleCollection = (e) => {
     e.preventDefault()
-    if (newCollection.trim() === '') return
+    if (collectionName.trim() === '') return
 
     const uniqueId = Date.now() + '-' + Math.floor(Math.random() * 1000)
 
     // push the new collection to an array with a unique Id
     setListCollections([
       ...listCollections,
-      { newCollection, id: uniqueId, expanded: true }
+      { collectionName, id: uniqueId, expanded: true }
     ])
-    setNewCollection('')
+    setCollectionName('')
     setModalOpen(false)
   }
 
@@ -78,8 +78,8 @@ export function CollectionModal () {
                       Name
                     </label>
                     <input
-                      value={newCollection}
-                      onChange={(e) => setNewCollection(e.target.value)}
+                      value={collectionName}
+                      onChange={(e) => setCollectionName(e.target.value)}
                       type='text'
                       name='name'
                       id='name'
