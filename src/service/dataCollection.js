@@ -1,21 +1,17 @@
-import { doc, updateDoc } from 'firebase/firestore'
+import { addDoc, collection } from 'firebase/firestore'
 import { db } from '../firebase'
 
 export const userCollections = async (user) => {
   if (!user) return
   try {
     // store the collection in firestore
-    const collectionArr = doc(db, 'Users/UserInfo')
+    const collectionArr = collection(db, 'Users')
 
-    const userId = user.uid
-    const initialUserInfo = {
-      [userId]: {
-        uid: userId,
-        collections: [],
-        tasks: []
-      }
-    }
-    await updateDoc(collectionArr, initialUserInfo)
+    await addDoc(collectionArr, {
+      uid: user.uid,
+      tasks: [],
+      collections: []
+    })
   } catch (error) {
     console.error(error)
   }
