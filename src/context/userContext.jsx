@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { doc, getDoc } from 'firebase/firestore'
+import { collection, getDocs, query, where } from 'firebase/firestore'
 import React, { createContext, useEffect, useState } from 'react'
 import { db } from '../firebase'
 
@@ -19,18 +19,19 @@ export function UserAccountProvider ({ children }) {
   useEffect(() => {
     const getUserData = async () => {
       if (!userAccount) return
-      // get the document from firebase
-      const documment = doc(db, 'Users', 'UserInfo')
-      const docSnapShot = await getDoc(documment)
 
-      if (!docSnapShot.exists()) return
-      // get the user data from the document
-      const data = docSnapShot.data()
-      const userData = data[userAccount.uid]
-
-      // store the data from the user
-      setUserData(userData)
-      localStorage.setItem('userData', JSON.stringify(userData))
+      try {
+        // Create a query to find the document with the given UID
+        const q = query(
+          collection(db, 'Users'),
+          where('uid', '==', userAccount.uid)
+        )
+        const querySnapshot = await getDocs(q)
+        // iterate to find the user and set the data to it
+        querySnapshot.forEach(snap => setUserData(snap.data()))
+      } catch (error) {
+        console.error(error)
+      }
     }
     getUserData()
   }, [userAccount])
