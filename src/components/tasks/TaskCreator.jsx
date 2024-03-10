@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react'
 import { useTasks } from '../../hooks/useTasks'
+import { useUserAccount } from '../../hooks/useUserAccount'
 
 function TaskCreator ({ collectionId }) {
   // toggle modal
@@ -8,11 +9,13 @@ function TaskCreator ({ collectionId }) {
   const { tasks, setTasks } = useTasks()
   const [newTasks, setNewTask] = useState('')
 
+  const { updateUserData } = useUserAccount()
+
   const handleTask = (e) => {
     e.preventDefault()
     if (newTasks.trim(' ') === '') return
     const uniqueId = Date.now() + Math.floor(Math.random() * 1000) // create a random Id
-    setTasks([
+    const updateTask = [
       ...tasks,
       {
         name: newTasks,
@@ -20,9 +23,13 @@ function TaskCreator ({ collectionId }) {
         idCollection: collectionId,
         isDone: false
       }
-    ])
+    ]
+    setTasks(updateTask)
     setModalOpen(false) // toggle modal
     setNewTask('')
+
+    // store the new task into firestore
+    updateUserData(null, updateTask)
   }
 
   return (

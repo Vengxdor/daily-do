@@ -1,11 +1,14 @@
 import React, { useState } from 'react'
 import { useCollection } from '../../hooks/useCollection'
+import { useUserAccount } from '../../hooks/useUserAccount'
 
 export function CollectionModal () {
   // all the collections that the user has
   const { listCollections, setListCollections } = useCollection([])
   const [isModalOpen, setModalOpen] = useState(false)
   const [collectionName, setCollectionName] = useState('')
+
+  const { updateUserData } = useUserAccount()
 
   const handleCollection = (e) => {
     e.preventDefault()
@@ -14,12 +17,16 @@ export function CollectionModal () {
     const uniqueId = Date.now() + '-' + Math.floor(Math.random() * 1000)
 
     // push the new collection to an array with a unique Id
-    setListCollections([
+    const newCollection = [
       ...listCollections,
       { collectionName, id: uniqueId, expanded: true }
-    ])
+    ]
+    setListCollections(newCollection)
     setCollectionName('')
     setModalOpen(false)
+
+    // store the new collection into firestore
+    updateUserData(newCollection)
   }
 
   return (
