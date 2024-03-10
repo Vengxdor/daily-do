@@ -8,7 +8,7 @@ function DashBoadCollection () {
   const { tasks } = useTasks()
   const { listCollections, toggleExpanded } = useCollection()
   return (
-    <ul className='w-full flex flex-col mt-3 gap-5'>
+    <ul className='w-full flex flex-col mt-10 gap-5'>
       {listCollections.map((collection) => {
         const tasksOfCollection = tasks
           .filter((item) => item.idCollection === collection.id)
@@ -24,7 +24,11 @@ function DashBoadCollection () {
             >
               <strong className='text-xl'>{collection.collectionName}</strong>
               <span>
-                <i className='fa-solid fa-angle-down'></i>
+                {collection.expanded && tasksOfCollection.length > 0
+                  ? <i className='fa-solid fa-angle-up'></i>
+                  : <i className='fa-solid fa-angle-down'></i>
+                }
+
               </span>
             </div>
             {tasksOfCollection.length !== 0 && (
