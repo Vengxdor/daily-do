@@ -48,16 +48,21 @@ function SignUp () {
     }
   }
   return (
-    <div className='p-5'>
+    <div className='w-11/12 m-auto py-5 md:w-8/12 lg:w-6/12 xl:w-4/12'>
       {isAccountCreated && (
         <CreatedDialog>Your account has been created. ✅</CreatedDialog>
       )}
       <LoginHeader text='Sign Up' />
       <form onSubmit={handleSignUp} className='flex flex-col gap-10'>
-        <div className='mt-16 flex flex-col gap-3'>
-          <span className='opacity-60 text-white'>Sign up with google.</span>
-          <button className='fa-brands fa-google p-4 bg-secundary/50 border-2 border-secundary rounded-xl'></button>
+      <div className='mt-16 flex flex-col gap-3'>
+          <button className=' p-4 bg-secundary/50 border-2 border-secundary rounded-xl flex items-center justify-center gap-2 text-lg'>
+            <i className='fa-brands fa-google text-xl'></i>
+            Create with Google
+          </button>
         </div>
+        <span className='flex justify-center text-lg text-white text-opacity-70'>
+          or
+        </span>
         <div className='flex flex-col gap-3'>
           <label htmlFor={nameId}>Name</label>
           <input
