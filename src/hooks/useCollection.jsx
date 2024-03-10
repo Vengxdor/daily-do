@@ -1,8 +1,10 @@
 import { useContext } from 'react'
 import { collectionContext } from '../context/collectionContext'
+import { useUserAccount } from './useUserAccount'
 
 export function useCollection () {
   const { listCollections, setListCollections } = useContext(collectionContext)
+  const { updateUserData } = useUserAccount()
 
   // return
   const deleteCollection = (collectionId) => {
@@ -10,6 +12,7 @@ export function useCollection () {
       (collection) => collection.id !== collectionId
     )
     setListCollections(updatedCollection)
+    updateUserData(updatedCollection)
   }
 
   const toggleExpanded = (collectionId) => {

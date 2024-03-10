@@ -4,14 +4,17 @@ import React, { createContext, useEffect, useState } from 'react'
 export const tasksContext = createContext()
 
 export function TasksProvider ({ children }) {
+  // get the tasks from the localStorage
+  const existingTasks = JSON.parse(localStorage.getItem('userData'))
+
   const [tasks, setTasks] = useState(() => {
-    const storageTasks = JSON.parse(localStorage.getItem('tasks'))
-    return storageTasks || []
+    return existingTasks.tasks || []
   })
   useEffect(() => {
+    existingTasks.tasks = tasks
     window.localStorage.setItem(
-      'tasks',
-      JSON.stringify(tasks)
+      'userData',
+      JSON.stringify(existingTasks)
     )
   }, [tasks])
   return (

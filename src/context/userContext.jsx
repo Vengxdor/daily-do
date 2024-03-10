@@ -26,9 +26,18 @@ export function UserAccountProvider ({ children }) {
           collection(db, 'Users'),
           where('uid', '==', userAccount.uid)
         )
+
         const querySnapshot = await getDocs(q)
         // iterate to find the user and set the data to it
-        querySnapshot.forEach(snap => setUserData(snap.data()))
+        let userQuery = null
+        querySnapshot.forEach(snap => {
+          userQuery = snap.data()
+        })
+
+        if (!userQuery) return
+        // store the user data into the local storage
+        setUserData(userQuery)
+        localStorage.setItem('userData', JSON.stringify(userQuery))
       } catch (error) {
         console.error(error)
       }
