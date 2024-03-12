@@ -7,11 +7,10 @@ export function CollectionProvider ({ children }) {
   // get the collections from the localStorage
   const existingCollection = JSON.parse(localStorage.getItem('userData'))
 
-  const [listCollections, setListCollections] = useState(() => {
-    return existingCollection.collections || []
-  })
+  const [listCollections, setListCollections] = useState(existingCollection?.collections ?? [])
 
   useEffect(() => {
+    if (!existingCollection) return
     existingCollection.collections = listCollections
     window.localStorage.setItem(
       'userData',

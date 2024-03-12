@@ -7,10 +7,9 @@ export function TasksProvider ({ children }) {
   // get the tasks from the localStorage
   const existingTasks = JSON.parse(localStorage.getItem('userData'))
 
-  const [tasks, setTasks] = useState(() => {
-    return existingTasks.tasks || []
-  })
+  const [tasks, setTasks] = useState(existingTasks?.tasks ?? [])
   useEffect(() => {
+    if (!existingTasks) return
     existingTasks.tasks = tasks
     window.localStorage.setItem(
       'userData',
