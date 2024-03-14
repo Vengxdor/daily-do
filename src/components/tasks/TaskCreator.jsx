@@ -1,35 +1,66 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react'
-import { useTasks } from '../../hooks/useTasks'
-import { useUserAccount } from '../../hooks/useUserAccount'
+import { useCollection } from '../../hooks/useCollection'
 
 function TaskCreator ({ collectionId }) {
   // toggle modal
   const [isModalOpen, setModalOpen] = useState(false)
-  const { tasks, setTasks } = useTasks()
+  const { setListCollections } = useCollection()
   const [newTasks, setNewTask] = useState('')
-
-  const { updateUserData } = useUserAccount()
 
   const handleTask = (e) => {
     e.preventDefault()
-    if (newTasks.trim(' ') === '') return
-    const uniqueId = Date.now() + Math.floor(Math.random() * 1000) // create a random Id
-    const updateTask = [
-      ...tasks,
-      {
-        name: newTasks,
-        taskId: uniqueId,
-        idCollection: collectionId,
-        isDone: false
+    if (newTasks.trim() === '') return
+
+    const uniqueId = Date.now() + Math.floor(Math.random() * 1000)
+
+    setListCollections((prevCollections) =>
+      prevCollections.map((collection) => {
+        if (collection.id === collectionId) {
+          return {
+            ...collection,
+            tasks: [
+              ...collection.tasks,
+              {
+                name: newTasks,
+                isDone: false,
+                id: uniqueId,
+                idCollection: collectionId
+              }
+            ]
+          }
+        }
+        return collection
+      })
+    )
+
+    // store locally
+    const userData = JSON.parse(localStorage.getItem('userData'))
+    if (!userData) return
+
+    userData.collections = userData.collections.map((item) => {
+      if (item.id === collectionId) {
+        return {
+          ...item,
+          tasks: [
+            ...item.tasks,
+            {
+              name: newTasks,
+              isDone: false,
+              id: uniqueId,
+              idCollection: collectionId
+            }
+          ]
+        }
       }
-    ]
-    setTasks(updateTask)
+      return item
+    })
+
+    localStorage.setItem('userData', JSON.stringify(userData))
+
+    // reset
     setModalOpen(false) // toggle modal
     setNewTask('')
-
-    // store the new task into firestore
-    updateUserData(null, updateTask)
   }
 
   return (

@@ -4,10 +4,16 @@ import { doc, updateDoc } from 'firebase/firestore'
 import { db } from '../firebase'
 
 export function useUserAccount () {
-  const { userAccount, setUserAccount, userData, setUserData } =
-    useContext(UserAccountContext)
+  const {
+    userAccount,
+    setUserAccount,
+    userData,
+    setUserData,
+    isAccountCreated,
+    setAccountCreated
+  } = useContext(UserAccountContext)
 
-  const updateUserData = async (listCollection, listTasks) => {
+  const updateUserData = async (listCollection) => {
     if (!userAccount) return
     try {
       // reference the current user document
@@ -16,7 +22,9 @@ export function useUserAccount () {
       const updatedUserData = {
         ...userData,
         collections: listCollection || userData.collections,
-        tasks: listTasks || userData.tasks
+        uid: userData.uid,
+        userActive: true,
+        username: userData.username
       }
       // update the documet with the marged data
       await updateDoc(UserRef, updatedUserData)
@@ -25,5 +33,13 @@ export function useUserAccount () {
     }
   }
 
-  return { userAccount, setUserAccount, userData, setUserData, updateUserData }
+  return {
+    userAccount,
+    setUserAccount,
+    userData,
+    setUserData,
+    updateUserData,
+    isAccountCreated,
+    setAccountCreated
+  }
 }

@@ -9,7 +9,7 @@ export function TasksInfo ({ info }) {
       <div className='flex gap-3'>
         <div className='relative flex justify-center items-center'>
           <input
-            className={` p-3 rounded-xl border-2 border-primary ${
+            className={` p-3 rounded-xl border-2 border-primary cursor-pointer ${
               info.isDone ? 'bg-primary' : 'bg-zinc-800'
             } appearance-none transition-colors duration-300`}
             type='checkbox'
@@ -35,7 +35,7 @@ export function TasksInfo ({ info }) {
         </span>
       </div>
       <button
-        onClick={() => deleteTask(info.taskId)}
+        onClick={() => deleteTask(info)}
         className='fa-solid fa-trash text-red-500 cursor-pointer'
       ></button>
     </div>

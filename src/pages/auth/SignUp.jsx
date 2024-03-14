@@ -1,5 +1,5 @@
 import React, { useId, useState } from 'react'
-import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
+import { createUserWithEmailAndPassword } from 'firebase/auth'
 import LoginHeader from '../../components/LoginHeader'
 import { Link } from 'react-router-dom'
 import { auth } from '../../firebase'
@@ -8,7 +8,7 @@ import { userCollections } from '../../service/dataCollection'
 import CreatedDialog from '../../components/CreatedDialog'
 
 function SignUp () {
-  const { setUserAccount } = useUserAccount()
+  const { setUserAccount, isAccountCreated, setAccountCreated } = useUserAccount()
   const nameId = useId()
   const emailId = useId()
   const passwordId = useId()
@@ -16,7 +16,6 @@ function SignUp () {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [isAccountCreated, setAccountCreated] = useState(false)
 
   const handleSignUp = async (e) => {
     e.preventDefault()
@@ -30,8 +29,6 @@ function SignUp () {
 
       const user = userCredentials.user
 
-      await updateProfile(user, { displayName: name })
-
       // if there's a user stored it and redirect to collections
       if (user) {
         setUserAccount(user)
@@ -42,7 +39,7 @@ function SignUp () {
       }
 
       // when the user is created, create a place in the data base
-      userCollections(user)
+      userCollections(user, name)
     } catch (error) {
       console.log(error)
     }

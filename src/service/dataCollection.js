@@ -1,21 +1,21 @@
 import { doc, setDoc } from 'firebase/firestore'
 import { db } from '../firebase'
 
-export const userCollections = async (user) => {
+export const userCollections = async (user, name) => {
   if (!user) return
 
   try {
-    // Genera un identificador único para el documento
-    const documentId = user.uid // Reemplaza 'nombrePersonalizado' con tu lógica para generar un nombre único
+    const documentId = user.uid
 
-    // Obtiene una referencia al documento con el identificador único
+    // Ref the document collection Users and give it the name of the user Id
     const userDocRef = doc(db, 'Users', documentId)
 
-    // Al agregar el documento, proporciona un objeto con los datos del documento
+    // provides an object with the document data
     await setDoc(userDocRef, {
       uid: user.uid,
-      tasks: [],
-      collections: []
+      collections: [],
+      username: name,
+      userActive: true
     })
   } catch (error) {
     console.error(error)

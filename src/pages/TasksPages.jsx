@@ -2,14 +2,16 @@ import React from 'react'
 import { Link, useParams } from 'react-router-dom'
 import TaskCreator from '../components/tasks/TaskCreator'
 import TaskList from '../components/tasks/TaskList'
-import { useTasks } from '../hooks/useTasks'
+import { useCollection } from '../hooks/useCollection'
 
 function TasksPages () {
   const { collectionId, collectionName } = useParams()
-  const { tasks } = useTasks()
-  const tasksOfCollection = tasks.filter(
-    (item) => item.idCollection === collectionId
+  const { listCollections } = useCollection()
+
+  const currentCollection = listCollections.find(
+    (item) => item.id === collectionId
   )
+  const cTasks = currentCollection?.tasks
 
   return (
     <div className='z-10 '>
@@ -23,13 +25,18 @@ function TasksPages () {
       </header>
 
       <main className='px-8'>
-      <span className='opacity-80'>Tasks - {tasksOfCollection.length}</span>
-      <div className='overflow-y-auto rounded-lg mt-5 tasks-list'>
-        {tasksOfCollection.length !== 0
-          ? <TaskList tasks={tasksOfCollection} />
-          : <p className='text-center'>You have no tasks, Try creating one :)</p>
-        }
-      </div>
+        <span className='opacity-80'>Tasks - {cTasks.length}</span>
+        <div className='overflow-y-auto rounded-lg mt-5 tasks-list'>
+          {cTasks.length !== 0
+            ? (
+            <TaskList tasks={cTasks} />
+              )
+            : (
+            <p className='text-center'>
+              You have no tasks, Try creating one :)
+            </p>
+              )}
+        </div>
       </main>
     </div>
   )

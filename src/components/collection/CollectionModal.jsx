@@ -7,7 +7,6 @@ export function CollectionModal () {
   const { listCollections, setListCollections } = useCollection([])
   const [isModalOpen, setModalOpen] = useState(false)
   const [collectionName, setCollectionName] = useState('')
-
   const { updateUserData } = useUserAccount()
 
   const handleCollection = (e) => {
@@ -19,7 +18,7 @@ export function CollectionModal () {
     // push the new collection to an array with a unique Id
     const newCollection = [
       ...listCollections,
-      { collectionName, id: uniqueId, expanded: true }
+      { collectionName, id: uniqueId, expanded: true, tasks: [] }
     ]
     setListCollections(newCollection)
     setCollectionName('')
@@ -123,7 +122,7 @@ export function CollectionModal () {
           {/* background Opacity */}
           <div
             onClick={() => setModalOpen(false)}
-            className='bg-black/20 w-screen h-screen inset-0 absolute z-10'
+            className='bg-black/40  inset-0 absolute z-10'
           ></div>
         </section>
       )}

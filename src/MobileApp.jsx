@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import TasksPages from './pages/TasksPages'
 import CollectionHome from './pages/CollectionHome'
@@ -8,20 +8,6 @@ import SignUp from './pages/auth/SignUp'
 import Landing from './pages/Landing'
 
 function MobileApp () {
-  useEffect(() => {
-    const user = JSON.parse(localStorage.getItem('userAccount'))
-    const collectionRef = '/Collections'
-
-    if (!user) return
-
-    // redirect the user unless he is in collections
-    if (location.href.includes(collectionRef)) return
-
-    if (user) {
-      location.href = collectionRef
-    }
-  }, [])
-
   return (
     <>
       <Routes>

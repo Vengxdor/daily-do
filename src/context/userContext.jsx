@@ -6,15 +6,23 @@ import { db } from '../firebase'
 export const UserAccountContext = createContext()
 
 export function UserAccountProvider ({ children }) {
+  const storageUser = JSON.parse(localStorage.getItem('userAccount'))
   const [userAccount, setUserAccount] = useState(() => {
-    const storageUser = JSON.parse(localStorage.getItem('userAccount'))
     return storageUser || null
   })
 
+  const storageData = JSON.parse(localStorage.getItem('userData'))
   const [userData, setUserData] = useState(() => {
-    const storageData = JSON.parse(localStorage.getItem('userData'))
     return storageData || null
   })
+
+  const [isAccountCreated, setAccountCreated] = useState(storageData?.userActive ?? false)
+
+  useEffect(() => {
+    if (!storageData) return
+    storageData.userActive = isAccountCreated
+    localStorage.setItem('userData', JSON.stringify(isAccountCreated))
+  }, [isAccountCreated])
 
   useEffect(() => {
     const getUserData = async () => {
@@ -46,12 +54,12 @@ export function UserAccountProvider ({ children }) {
   }, [userAccount])
 
   useEffect(() => {
-    window.localStorage.setItem('userAccount', JSON.stringify(userAccount))
-  }, [userAccount])
+    window.localStorage.setItem('userData', JSON.stringify(userData))
+  }, [userData])
 
   return (
     <UserAccountContext.Provider
-      value={{ userAccount, setUserAccount, userData, setUserData }}
+    value={{ userAccount, setUserAccount, userData, setUserData, isAccountCreated, setAccountCreated }}
     >
       {children}
     </UserAccountContext.Provider>
