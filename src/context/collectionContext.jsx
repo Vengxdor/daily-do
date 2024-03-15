@@ -6,18 +6,13 @@ export const collectionContext = createContext()
 
 export function CollectionProvider ({ children }) {
   const { updateUserData } = useUserAccount()
-  // get the collections from the localStorage
+  // Get the collections from the localStorage.
   const existingCollection = JSON.parse(localStorage.getItem('userData'))
-  const localCollection = JSON.parse(localStorage.getItem('collections'))
 
   const [listCollections, setListCollections] = useState(() => {
-    // if there's a user load the user information
-    if (existingCollection) {
-      return existingCollection?.collections
-    }
-    // if there's not a user and o local collection return an empty arr
-    if (!localCollection) return []
-    return localCollection
+    if (!existingCollection) return []
+
+    return existingCollection?.collections
   })
 
   useEffect(() => {
@@ -25,9 +20,6 @@ export function CollectionProvider ({ children }) {
   }, [listCollections])
 
   useEffect(() => {
-    // store the collection locally if the user don't have an account
-    window.localStorage.setItem('collections', JSON.stringify(listCollections))
-
     // if the user has an account store the collection in userData
     if (!existingCollection) return
     existingCollection.collections = listCollections
