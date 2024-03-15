@@ -1,9 +1,11 @@
 /* eslint-disable react/prop-types */
 import React, { createContext, useEffect, useState } from 'react'
+import { useUserAccount } from '../hooks/useUserAccount'
 
 export const collectionContext = createContext()
 
 export function CollectionProvider ({ children }) {
+  const { updateUserData } = useUserAccount()
   // get the collections from the localStorage
   const existingCollection = JSON.parse(localStorage.getItem('userData'))
   const localCollection = JSON.parse(localStorage.getItem('collections'))
@@ -17,6 +19,10 @@ export function CollectionProvider ({ children }) {
     if (!localCollection) return []
     return localCollection
   })
+
+  useEffect(() => {
+    updateUserData(listCollections)
+  }, [listCollections])
 
   useEffect(() => {
     // store the collection locally if the user don't have an account
