@@ -2,15 +2,13 @@ import React from 'react'
 import TaskList from '../components/tasks/TaskList'
 import { Link } from 'react-router-dom'
 import { useCollection } from '../hooks/useCollection'
-import { useTasks } from '../hooks/useTasks'
 
 function DashBoadCollection () {
-  const { tasks } = useTasks()
   const { listCollections, toggleExpanded } = useCollection()
   return (
     <ul className='w-full flex flex-col mt-10 gap-5'>
       {listCollections.map((collection) => {
-        const tasksOfCollection = tasks
+        const tasksOfCollection = collection.tasks
           .filter((item) => item.idCollection === collection.id)
           .slice(0, 2)
         return (

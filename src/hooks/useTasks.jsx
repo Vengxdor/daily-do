@@ -1,43 +1,43 @@
-import { useContext } from 'react'
-import { tasksContext } from '../context/taskContex'
 import { useCollection } from './useCollection'
 
 export function useTasks () {
-  const { tasks, setTasks } = useContext(tasksContext)
   const { setListCollections } = useCollection()
+  // !problems
+  const deleteTask = (task) => {
+    setListCollections((prevCollections) =>
+      prevCollections.map((collection) => {
+        // Verify the current collection.
+        if (collection.id === task.idCollection) {
+          const updatedTasks = collection.tasks.filter(
+            (item) => item.id !== task.id
+          )
+          return { ...collection, tasks: updatedTasks }
+        }
 
-  const deleteTask = (taskId, collectionId) => {
-    console.log(collectionId)
-    setListCollections(prevCollections => prevCollections.map(collection => {
-      if (collection.id === collectionId) {
-        const updatedTasks = collection.tasks.filter(task => task.taskId !== taskId)
-        return { ...collection, tasks: updatedTasks }
-      }
-      return collection
-    }))
-
-    // Remove the task locally
-    const userData = JSON.parse(localStorage.getItem('userData'))
-    if (!userData) return
-
-    userData.collections = userData.collections.map(item => {
-      if (item.id === collectionId) {
-        const updatedTasks = item.tasks.filter(task => task.taskId !== taskId)
-        return { ...item, tasks: updatedTasks }
-      }
-      return item
-    })
-
-    localStorage.setItem('userData', JSON.stringify(userData))
-  }
-
-  const toggleTaskStatus = (taskId) => {
-    // use the previous states then mapped and if the tasks id mach will put the opposite of isDone or if not
-    const checkedTask = tasks.map((task) =>
-      task.taskId === taskId ? { ...task, isDone: !task.isDone } : task
+        return collection
+      })
     )
-    setTasks(checkedTask)
   }
 
-  return { tasks, setTasks, deleteTask, toggleTaskStatus }
+  const handleDone = (task) => {
+    setListCollections((prevCollection) =>
+      prevCollection.map((collection) => {
+        // Verify the current collection.
+        if (collection.id === task.idCollection) {
+          // Map every tasks to see which was clicked
+          const updatedTasks = collection.tasks.map((t) => {
+            if (t.id === task.id) {
+              return { ...t, isDone: !task.isDone }
+            }
+            return t
+          })
+
+          return { ...collection, tasks: updatedTasks }
+        }
+        return collection
+      })
+    )
+  }
+
+  return { deleteTask, handleDone }
 }

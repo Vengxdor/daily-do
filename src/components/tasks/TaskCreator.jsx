@@ -34,6 +34,9 @@ function TaskCreator ({ collectionId }) {
       })
     )
 
+    // reset
+    setModalOpen(false) // toggle modal
+    setNewTask('')
     // store locally
     const userData = JSON.parse(localStorage.getItem('userData'))
     if (!userData) return
@@ -57,10 +60,6 @@ function TaskCreator ({ collectionId }) {
     })
 
     localStorage.setItem('userData', JSON.stringify(userData))
-
-    // reset
-    setModalOpen(false) // toggle modal
-    setNewTask('')
   }
 
   return (

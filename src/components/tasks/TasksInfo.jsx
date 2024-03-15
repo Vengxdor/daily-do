@@ -3,7 +3,7 @@ import React from 'react'
 import { useTasks } from '../../hooks/useTasks'
 
 export function TasksInfo ({ info }) {
-  const { deleteTask, toggleTaskStatus } = useTasks()
+  const { deleteTask, handleDone } = useTasks()
   return (
     <div className='flex justify-between'>
       <div className='flex gap-3'>
@@ -13,7 +13,7 @@ export function TasksInfo ({ info }) {
               info.isDone ? 'bg-primary' : 'bg-zinc-800'
             } appearance-none transition-colors duration-300`}
             type='checkbox'
-            onChange={() => toggleTaskStatus(info.taskId)}
+            onChange={() => handleDone(info)}
           />
           <i
             className={`fa-solid fa-check absolute pointer-events-none text-black ${
