@@ -8,9 +8,9 @@ function MobileApp () {
   return (
     <>
       <Routes>
-        <Route path='/Collections' element={<CollectionHome />} />
+        <Route path='/' element={<CollectionHome />} />
         <Route path='/:collectionName/:collectionId' element={<TasksPages />} />
-        <Route path='/DashBoard' element={<DashBoard />} />
+        <Route path='/Dashboard' element={<DashBoard />} />
       </Routes>
 
     </>

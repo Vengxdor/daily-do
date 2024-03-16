@@ -33,9 +33,6 @@ function SignUp () {
       if (user) {
         setUserAccount(user)
         setAccountCreated(true)
-        setTimeout(() => {
-          location.href = '/Collections'
-        }, 3000)
       }
 
       // when the user is created, create a place in the data base

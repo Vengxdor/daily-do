@@ -8,17 +8,17 @@ function DashCollectionLink () {
     <div className='ml-4 flex gap-3'>
       <Link
         className={`${
-          location.pathname === '/Collections' && 'bg-zinc-500'
+          location.pathname === '/' && 'bg-zinc-500'
         } py-1.5 px-3 rounded-2xl border border-zinc-500 transition-colors duration-300`}
-        to='/Collections'
+        to='/'
       >
         Collection
       </Link>
       <Link
         className={`${
-          location.pathname === '/DashBoard' && 'bg-zinc-500'
+          location.pathname === '/Dashboard' && 'bg-zinc-500'
         } py-1.5 px-3 rounded-2xl border border-zinc-500 transition-colors duration-300`}
-        to={`${location.pathname === '/DashBoard' ? '/Collections' : '/DashBoard'}`}
+        to={`${location.pathname === '/Dashboard' ? '/' : '/Dashboard'}`}
       >
         Dashboard
       </Link>
