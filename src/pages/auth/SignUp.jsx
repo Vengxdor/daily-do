@@ -45,7 +45,7 @@ function SignUp () {
     }
   }
   return (
-    <div className='h-screen w-screen bg-neutral-950 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]'>
+    <div className='h-full w-full bg-neutral-950 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]'>
       <div className='w-11/12 m-auto py-5 md:w-8/12 lg:w-6/12 xl:w-4/12'>
         {isAccountCreated && (
           <CreatedDialog>Your account has been created. ✅</CreatedDialog>

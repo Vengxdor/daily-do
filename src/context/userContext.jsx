@@ -17,7 +17,6 @@ export function UserAccountProvider ({ children }) {
   })
 
   const [isAccountCreated, setAccountCreated] = useState(storageData?.userActive ?? false)
-
   useEffect(() => {
     if (!storageData) return
     storageData.userActive = isAccountCreated
@@ -25,9 +24,8 @@ export function UserAccountProvider ({ children }) {
   }, [isAccountCreated])
 
   useEffect(() => {
+    if (!userAccount) return
     const getUserData = async () => {
-      if (!userAccount) return
-
       try {
         // Create a query to find the document with the given UID
         const q = query(
@@ -51,6 +49,8 @@ export function UserAccountProvider ({ children }) {
       }
     }
     getUserData()
+    // Store the userAccount in the loaclStorage every time it changes.
+    localStorage.setItem('userAccount', JSON.stringify(userAccount))
   }, [userAccount])
 
   useEffect(() => {

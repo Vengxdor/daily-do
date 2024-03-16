@@ -22,6 +22,7 @@ function Login () {
 
       const user = userCredential.user
       setUserAccount(user)
+      // localStorage.setItem('userAccount', JSON.stringify(user))
       // if there's a user stored it and redirect to collections
       if (user) {
         location.href = '/Collections'
