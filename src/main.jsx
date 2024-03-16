@@ -1,21 +1,19 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-// import App from './App.jsx'
 import './index.css'
-import MobileApp from './MobileApp.jsx'
+import App from './App.jsx'
 import { CollectionProvider } from './context/collectionContext.jsx'
 import { BrowserRouter as Router } from 'react-router-dom'
-import Landing from './pages/Landing.jsx'
 import { UserAccountProvider } from './context/userContext.jsx'
+import LandingPage from './pages/LandingPage.jsx'
 
-const yes = false
+const isAccountCreated = JSON.parse(localStorage.getItem('userData'))
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Router>
     <UserAccountProvider>
       <CollectionProvider>
-          {yes ? <Landing /> : <MobileApp />}
-          {/* <App /> */}
+        {isAccountCreated ? <App /> : <LandingPage />}
       </CollectionProvider>
     </UserAccountProvider>
   </Router>
