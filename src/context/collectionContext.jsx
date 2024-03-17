@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { createContext, useEffect, useState } from 'react'
 import { useUserAccount } from '../hooks/useUserAccount'
 
@@ -25,8 +26,33 @@ export function CollectionProvider ({ children }) {
     window.localStorage.setItem('userData', JSON.stringify(existingCollection))
   }, [listCollections])
 
+  // return
+  const deleteCollection = (collectionId) => {
+    const updatedCollection = listCollections.filter(
+      (collection) => collection.id !== collectionId
+    )
+    setListCollections(updatedCollection)
+    updateUserData(updatedCollection)
+  }
+
+  const toggleExpanded = (collectionId) => {
+    const expandedCollection = listCollections.map((collection) =>
+      collection.id === collectionId
+        ? { ...collection, expanded: !collection.expanded }
+        : collection
+    )
+    setListCollections(expandedCollection)
+  }
+
   return (
-    <collectionContext.Provider value={{ listCollections, setListCollections }}>
+    <collectionContext.Provider
+      value={{
+        listCollections,
+        setListCollections,
+        deleteCollection,
+        toggleExpanded
+      }}
+    >
       {children}
     </collectionContext.Provider>
   )

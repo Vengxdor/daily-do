@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { collection, getDocs, query, where } from 'firebase/firestore'
+import { collection, doc, getDocs, query, updateDoc, where } from 'firebase/firestore'
 import React, { createContext, useEffect, useState } from 'react'
 import { db } from '../firebase'
 
@@ -59,6 +59,26 @@ export function UserAccountProvider ({ children }) {
     window.localStorage.setItem('userData', JSON.stringify(userData))
   }, [userData])
 
+  const updateUserData = async (listCollection) => {
+    if (!userAccount) return
+    try {
+      // reference the current user document
+      const UserRef = doc(db, `Users/${userAccount.uid}`)
+
+      const updatedUserData = {
+        ...userData,
+        collections: listCollection || userData.collections,
+        uid: userData.uid,
+        userActive: true,
+        username: userData.username
+      }
+      // update the documet with the marged data
+      await updateDoc(UserRef, updatedUserData)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   return (
     <UserAccountContext.Provider
       value={{
@@ -67,7 +87,8 @@ export function UserAccountProvider ({ children }) {
         userData,
         setUserData,
         isAccountCreated,
-        setAccountCreated
+        setAccountCreated,
+        updateUserData
       }}
     >
       {children}
