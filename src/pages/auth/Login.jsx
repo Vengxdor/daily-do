@@ -4,13 +4,16 @@ import { Link } from 'react-router-dom'
 import { auth } from '../../firebase'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import { useUserAccount } from '../../hooks/useUserAccount'
+import CreatedDialog from '../../components/CreatedDialog'
 function Login () {
   const emailId = useId()
   const passwordId = useId()
   const [email, setEmail] = useState()
   const [password, setPassword] = useState()
+  const [error, setError] = useState('')
+  const [login, setLogin] = useState('')
 
-  const { setUserAccount, setAccountCreated } = useUserAccount()
+  const { setUserAccount, setAccountCreated, userData } = useUserAccount()
   const handleLogin = async (e) => {
     e.preventDefault()
     try {
@@ -22,18 +25,35 @@ function Login () {
 
       const user = userCredential.user
       // If there's a user stored it and redirect to collections.
-      setUserAccount(user)
-      setAccountCreated(true)
+      setLogin(true)
+      setTimeout(() => {
+        setUserAccount(user)
+        setAccountCreated(true)
+      }, 3000)
+
       setTimeout(() => {
         location.pathname = '/'
-      }, 200)
-    } catch (error) {
-      console.log(error)
+      }, 3300)
+    } catch (e) {
+      const error = e.message
+      if (error.includes('auth/invalid-credential')) {
+        setError('Your email or password seems to be wrong.')
+      }
+    } finally {
+      setTimeout(() => {
+        setError('')
+      }, 3300)
     }
   }
   return (
     <div className='h-screen w-screen bg-neutral-950 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]'>
       <div className='w-11/12 m-auto py-5 md:w-8/12 lg:w-6/12 xl:w-4/12 '>
+      {login && (
+          <CreatedDialog>Welcome Back, {userData.username} ✅</CreatedDialog>
+      )}
+        {error && (
+          <CreatedDialog>{error}❌</CreatedDialog>
+        )}
         <LoginHeader text='Login' />
         <form onSubmit={handleLogin} className='flex flex-col gap-10'>
           <div className='mt-16 flex flex-col gap-3'>

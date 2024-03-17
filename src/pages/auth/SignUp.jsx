@@ -16,6 +16,7 @@ function SignUp () {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [error, setError] = useState('')
 
   const handleSignUp = async (e) => {
     e.preventDefault()
@@ -33,19 +34,33 @@ function SignUp () {
       setAccountCreated(true)
       setTimeout(() => {
         location.pathname = '/'
-      }, 200)
+      }, 3000)
 
       // When the user is created, create a place in the data base.
       userCollections(user, name)
-    } catch (error) {
-      console.log(error)
+    } catch (e) {
+      const error = e.message
+      if (error.includes('auth/email-already-in-use')) {
+        setError('This Email is already in use.')
+      }
+
+      if (error.includes('auth/weak-password')) {
+        setError('Password should be at least 6 characters.')
+      }
+    } finally {
+      setTimeout(() => {
+        setError('')
+      }, 3300)
     }
   }
   return (
     <div className='h-full w-full bg-neutral-950 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]'>
       <div className='w-11/12 m-auto py-5 md:w-8/12 lg:w-6/12 xl:w-4/12'>
         {isAccountCreated && (
-          <CreatedDialog>Your account has been created. ✅</CreatedDialog>
+          <CreatedDialog>Your account have been created. ✅</CreatedDialog>
+        )}
+        {error && (
+          <CreatedDialog>{error}❌</CreatedDialog>
         )}
         <LoginHeader text='Sign Up' />
         <form onSubmit={handleSignUp} className='flex flex-col gap-10'>
