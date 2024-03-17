@@ -1,22 +1,13 @@
 import React from 'react'
 import { useUserAccount } from '../hooks/useUserAccount'
-import { useCollection } from '../hooks/useCollection'
+import SignOutModal from './SignOutModal'
 
 function SignOutBtn () {
-  const { userData, setUserAccount, setAccountCreated } = useUserAccount()
-  const { setListCollections } = useCollection()
-  const handleSignOut = () => {
-    // reset user account
-    setUserAccount(null)
-    localStorage.removeItem('userAccount')
-    localStorage.removeItem('userData')
-    setListCollections([])
-    setAccountCreated(false)
-  }
+  const { userData } = useUserAccount()
   return (
     <>
     {userData
-      ? <button className='p-3 border rounded-xl' onClick={handleSignOut}>Sign Out</button>
+      ? <SignOutModal />
       : <span className='text-red-400'>No account</span>
     }
     </>
