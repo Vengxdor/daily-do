@@ -7,7 +7,6 @@ import DeleteCollectionModal from './DeleteCollectionModal'
 import { CollectionIcon } from './CollectionIcon'
 import { CollectionModal } from './CollectionModal'
 import ProgressBar from '../ProgressBar'
-import SignOutBtn from '../SignOutBtn'
 
 export function ListOfCollections () {
   const { listCollections, deleteCollection } = useCollection()

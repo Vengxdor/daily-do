@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import SignOutBtn from '../components/SignOutBtn'
 import { useUserAccount } from '../hooks/useUserAccount'
 
-function Account() {
+function Account () {
   const { userData, userAccount } = useUserAccount()
   return (
     <div className='w-11/12 m-auto sm:w-5/6 py-6'>
