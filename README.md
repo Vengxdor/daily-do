@@ -1,7 +1,7 @@
-![app logo](./public/logo.png)
+<img style='display: flex; margin: 0 auto;' src="./public/logo.png" alt="App logo">
+
 
 # DailyDo Tasks app
-
 DailyDo was created using react and tailwindcss
 
 ### Objetives
@@ -16,5 +16,6 @@ DailyDo was created using react and tailwindcss
 
 ### Inspiration
 - I inspirate the design in a dribbble creator ([Oliver Cederborg](https://dribbble.com/shots/15185058-Collection-Tasks))
+
 
 
