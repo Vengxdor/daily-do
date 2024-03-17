@@ -35,7 +35,7 @@ function SignUp () {
         location.pathname = '/'
       }, 200)
 
-      // when the user is created, create a place in the data base
+      // When the user is created, create a place in the data base.
       userCollections(user, name)
     } catch (error) {
       console.log(error)

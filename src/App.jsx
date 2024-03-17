@@ -6,7 +6,6 @@ import { useUserAccount } from './hooks/useUserAccount'
 
 function App () {
   const { isAccountCreated } = useUserAccount()
-  console.log(isAccountCreated)
 
   return (
     <>

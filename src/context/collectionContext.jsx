@@ -16,23 +16,20 @@ export function CollectionProvider ({ children }) {
   })
 
   useEffect(() => {
+    // Storage the collections to firebase every time it changes.
     updateUserData(listCollections)
-  }, [listCollections])
 
-  useEffect(() => {
-    // if the user has an account store the collection in userData
+    // If the user has an account store the collection in userData.
     if (!existingCollection) return
     existingCollection.collections = listCollections
     window.localStorage.setItem('userData', JSON.stringify(existingCollection))
   }, [listCollections])
 
-  // return
   const deleteCollection = (collectionId) => {
     const updatedCollection = listCollections.filter(
       (collection) => collection.id !== collectionId
     )
     setListCollections(updatedCollection)
-    updateUserData(updatedCollection)
   }
 
   const toggleExpanded = (collectionId) => {

@@ -21,8 +21,7 @@ function Login () {
       )
 
       const user = userCredential.user
-      // localStorage.setItem('userAccount', JSON.stringify(user))
-      // if there's a user stored it and redirect to collections
+      // If there's a user stored it and redirect to collections.
       setUserAccount(user)
       setAccountCreated(true)
       setTimeout(() => {

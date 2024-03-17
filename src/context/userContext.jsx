@@ -6,8 +6,8 @@ import { db } from '../firebase'
 export const UserAccountContext = createContext()
 
 export function UserAccountProvider ({ children }) {
-  const storageUser = JSON.parse(localStorage.getItem('userAccount'))
   const [userAccount, setUserAccount] = useState(() => {
+    const storageUser = JSON.parse(localStorage.getItem('userAccount'))
     return storageUser || null
   })
 
@@ -19,6 +19,8 @@ export function UserAccountProvider ({ children }) {
   const [isAccountCreated, setAccountCreated] = useState(
     storageData?.userActive ?? false
   )
+
+  // Storage when the account is created.
   useEffect(() => {
     if (!storageData) return
     storageData.userActive = isAccountCreated
@@ -29,21 +31,21 @@ export function UserAccountProvider ({ children }) {
     if (!userAccount) return
     const getUserData = async () => {
       try {
-        // Create a query to find the document with the given UID
+        // Create a query to find the document with the given UID.
         const q = query(
           collection(db, 'Users'),
           where('uid', '==', userAccount.uid)
         )
 
         const querySnapshot = await getDocs(q)
-        // iterate to find the user and set the data to it
+        // Iterate to find the user and set the data to it.
         let userQuery = null
         querySnapshot.forEach((snap) => {
           userQuery = snap.data()
         })
 
         if (!userQuery) return
-        // store the user data into the local storage
+        // Store the user data into the local storage.
         setUserData(userQuery)
         localStorage.setItem('userData', JSON.stringify(userQuery))
       } catch (error) {
@@ -62,7 +64,7 @@ export function UserAccountProvider ({ children }) {
   const updateUserData = async (listCollection) => {
     if (!userAccount) return
     try {
-      // reference the current user document
+      // Reference the current user document.
       const UserRef = doc(db, `Users/${userAccount.uid}`)
 
       const updatedUserData = {
@@ -72,7 +74,7 @@ export function UserAccountProvider ({ children }) {
         userActive: true,
         username: userData.username
       }
-      // update the documet with the marged data
+      // Update the documet with the marged data.
       await updateDoc(UserRef, updatedUserData)
     } catch (error) {
       console.error(error)

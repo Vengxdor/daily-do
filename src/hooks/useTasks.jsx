@@ -2,7 +2,7 @@ import { useCollection } from './useCollection'
 
 export function useTasks () {
   const { setListCollections } = useCollection()
-  // !problems
+
   const deleteTask = (task) => {
     setListCollections((prevCollections) =>
       prevCollections.map((collection) => {
@@ -24,7 +24,7 @@ export function useTasks () {
       prevCollection.map((collection) => {
         // Verify the current collection.
         if (collection.id === task.idCollection) {
-          // Map every tasks to see which was clicked
+          // Map every tasks to see which was clicked.
           const updatedTasks = collection.tasks.map((t) => {
             if (t.id === task.id) {
               return { ...t, isDone: !task.isDone }
