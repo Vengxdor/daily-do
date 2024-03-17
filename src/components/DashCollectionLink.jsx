@@ -5,19 +5,19 @@ import { Link, useLocation } from 'react-router-dom'
 function DashCollectionLink () {
   const location = useLocation()
   return (
-    <div className='ml-4 flex gap-3'>
+    <div className='flex gap-3'>
       <Link
         className={`${
-          location.pathname === '/' && 'bg-zinc-500'
-        } py-1.5 px-3 rounded-2xl border border-zinc-500 transition-colors duration-300`}
-        to='/'
+          location.pathname === '/' && 'bg-hover'
+        } py-1.5 px-3 rounded-2xl border border-hover transition-colors duration-300`}
+        to={`${location.pathname === '/' ? '/dashboard' : '/'}`}
       >
         Collection
       </Link>
       <Link
         className={`${
-          location.pathname === '/dashboard' && 'bg-zinc-500'
-        } py-1.5 px-3 rounded-2xl border border-zinc-500 transition-colors duration-300`}
+          location.pathname === '/dashboard' && 'bg-hover'
+        } py-1.5 px-3 rounded-2xl border border-hover transition-colors duration-300`}
         to={`${location.pathname === '/dashboard' ? '/' : '/dashboard'}`}
       >
         Dashboard
