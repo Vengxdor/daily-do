@@ -16,7 +16,9 @@ export function UserAccountProvider ({ children }) {
     return storageData || null
   })
 
-  const [isAccountCreated, setAccountCreated] = useState(storageData?.userActive ?? false)
+  const [isAccountCreated, setAccountCreated] = useState(
+    storageData?.userActive ?? false
+  )
   useEffect(() => {
     if (!storageData) return
     storageData.userActive = isAccountCreated
@@ -36,7 +38,7 @@ export function UserAccountProvider ({ children }) {
         const querySnapshot = await getDocs(q)
         // iterate to find the user and set the data to it
         let userQuery = null
-        querySnapshot.forEach(snap => {
+        querySnapshot.forEach((snap) => {
           userQuery = snap.data()
         })
 
@@ -59,7 +61,14 @@ export function UserAccountProvider ({ children }) {
 
   return (
     <UserAccountContext.Provider
-    value={{ userAccount, setUserAccount, userData, setUserData, isAccountCreated, setAccountCreated }}
+      value={{
+        userAccount,
+        setUserAccount,
+        userData,
+        setUserData,
+        isAccountCreated,
+        setAccountCreated
+      }}
     >
       {children}
     </UserAccountContext.Provider>

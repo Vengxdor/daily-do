@@ -1,20 +1,20 @@
 import React from 'react'
-import { Route, Routes } from 'react-router-dom'
-import TasksPages from './pages/TasksPages'
-import CollectionHome from './pages/CollectionHome'
-import DashBoard from './pages/DashBoard'
+import { CollectionProvider } from './context/collectionContext'
+import LandingPage from './pages/LandingPage'
+import Collections from './Collections'
+import { useUserAccount } from './hooks/useUserAccount'
 
-function MobileApp () {
+function App () {
+  const { isAccountCreated } = useUserAccount()
+  console.log(isAccountCreated)
+
   return (
     <>
-      <Routes>
-        <Route path='/' element={<CollectionHome />} />
-        <Route path='/:collectionName/:collectionId' element={<TasksPages />} />
-        <Route path='/Dashboard' element={<DashBoard />} />
-      </Routes>
-
+      <CollectionProvider>
+        {isAccountCreated ? <Collections /> : <LandingPage />}
+      </CollectionProvider>
     </>
   )
 }
 
-export default MobileApp
+export default App

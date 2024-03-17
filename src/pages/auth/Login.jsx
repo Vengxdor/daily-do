@@ -10,7 +10,7 @@ function Login () {
   const [email, setEmail] = useState()
   const [password, setPassword] = useState()
 
-  const { setUserAccount } = useUserAccount()
+  const { setUserAccount, setAccountCreated } = useUserAccount()
   const handleLogin = async (e) => {
     e.preventDefault()
     try {
@@ -21,12 +21,13 @@ function Login () {
       )
 
       const user = userCredential.user
-      setUserAccount(user)
       // localStorage.setItem('userAccount', JSON.stringify(user))
       // if there's a user stored it and redirect to collections
-      if (user) {
-        location.href = '/Collections'
-      }
+      setUserAccount(user)
+      setAccountCreated(true)
+      setTimeout(() => {
+        location.pathname = '/'
+      }, 200)
     } catch (error) {
       console.log(error)
     }

@@ -3,7 +3,7 @@ import { useUserAccount } from '../hooks/useUserAccount'
 import { useCollection } from '../hooks/useCollection'
 
 function SignOutBtn () {
-  const { userData, setUserAccount } = useUserAccount()
+  const { userData, setUserAccount, setAccountCreated } = useUserAccount()
   const { setListCollections } = useCollection()
   const handleSignOut = () => {
     // reset user account
@@ -11,6 +11,7 @@ function SignOutBtn () {
     localStorage.removeItem('userAccount')
     localStorage.removeItem('userData')
     setListCollections([])
+    setAccountCreated(false)
   }
   return (
     <>

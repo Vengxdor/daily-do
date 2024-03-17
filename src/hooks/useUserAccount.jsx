@@ -29,7 +29,7 @@ export function useUserAccount () {
       // update the documet with the marged data
       await updateDoc(UserRef, updatedUserData)
     } catch (error) {
-      console.log(error)
+      console.error(error)
     }
   }
 

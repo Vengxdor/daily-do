@@ -29,11 +29,11 @@ function SignUp () {
 
       const user = userCredentials.user
 
-      // if there's a user stored it and redirect to collections
-      if (user) {
-        setUserAccount(user)
-        setAccountCreated(true)
-      }
+      setUserAccount(user)
+      setAccountCreated(true)
+      setTimeout(() => {
+        location.pathname = '/'
+      }, 200)
 
       // when the user is created, create a place in the data base
       userCollections(user, name)
