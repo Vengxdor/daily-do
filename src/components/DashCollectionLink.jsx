@@ -16,9 +16,9 @@ function DashCollectionLink () {
       </Link>
       <Link
         className={`${
-          location.pathname === '/Dashboard' && 'bg-zinc-500'
+          location.pathname === '/dashboard' && 'bg-zinc-500'
         } py-1.5 px-3 rounded-2xl border border-zinc-500 transition-colors duration-300`}
-        to={`${location.pathname === '/Dashboard' ? '/' : '/Dashboard'}`}
+        to={`${location.pathname === '/dashboard' ? '/' : '/dashboard'}`}
       >
         Dashboard
       </Link>

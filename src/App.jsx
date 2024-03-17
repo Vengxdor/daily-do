@@ -1,7 +1,7 @@
 import React from 'react'
 import { CollectionProvider } from './context/collectionContext'
 import LandingPage from './pages/LandingPage'
-import Collections from './Collections'
+import DailyDo from './DailyDo'
 import { useUserAccount } from './hooks/useUserAccount'
 
 function App () {
@@ -10,7 +10,7 @@ function App () {
   return (
     <>
       <CollectionProvider>
-        {isAccountCreated ? <Collections /> : <LandingPage />}
+        {isAccountCreated ? <DailyDo /> : <LandingPage />}
       </CollectionProvider>
     </>
   )

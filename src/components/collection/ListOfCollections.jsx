@@ -61,7 +61,6 @@ export function ListOfCollections () {
       })}
       <li>
         <CollectionModal />
-        <SignOutBtn />
       </li>
     </ul>
   )

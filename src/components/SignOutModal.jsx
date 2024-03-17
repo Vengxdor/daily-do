@@ -19,7 +19,7 @@ function SignOutModal () {
     <>
       <button
         onClick={() => setDeleteOpen(!isDeleteOpen)}
-        className='p-3 border rounded-xl text-xl '
+        className='p-3 border rounded-xl text-xl w-full sm:w-auto'
       >Sign out</button>
       {isDeleteOpen && (
         <div
