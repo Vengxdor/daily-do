@@ -13,7 +13,7 @@ function Login () {
   const [error, setError] = useState('')
   const [login, setLogin] = useState('')
 
-  const { setUserAccount, setAccountCreated, userData } = useUserAccount()
+  const { setUserAccount, userData } = useUserAccount()
   const handleLogin = async (e) => {
     e.preventDefault()
     try {
@@ -26,14 +26,11 @@ function Login () {
       const user = userCredential.user
       // If there's a user stored it and redirect to collections.
       setLogin(true)
-      setTimeout(() => {
-        setUserAccount(user)
-        setAccountCreated(true)
-      }, 3000)
+      setUserAccount(user)
 
       setTimeout(() => {
         location.pathname = '/'
-      }, 3300)
+      }, 3000)
     } catch (e) {
       const error = e.message
       if (error.includes('auth/invalid-credential')) {
@@ -49,7 +46,7 @@ function Login () {
     <div className='h-screen w-screen bg-neutral-950 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]'>
       <div className='w-11/12 m-auto py-5 md:w-8/12 lg:w-6/12 xl:w-4/12 '>
       {login && (
-          <CreatedDialog>Welcome Back, {userData.username} ✅</CreatedDialog>
+          <CreatedDialog>Welcome Back, {userData && userData.username} ✅</CreatedDialog>
       )}
         {error && (
           <CreatedDialog>{error}❌</CreatedDialog>
