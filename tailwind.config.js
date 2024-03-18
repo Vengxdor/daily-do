@@ -7,6 +7,9 @@ export default {
         primary: '#ea2088',
         secundary: '#21212b',
         hover: '#3d3c4f'
+      },
+      screens: {
+        wide: '850px'
       }
     }
   },

@@ -14,8 +14,14 @@ DailyDo was created using react and tailwindcss
 
 - [x] Store the tasks in the account.
 
-### Inspiration
-- I inspirate the design in a dribbble creator ([Oliver Cederborg](https://dribbble.com/shots/15185058-Collection-Tasks))
+### Credits
+
+UI Inspiration - [Collection Tasks by Oliver Cederborg](https://dribbble.com/shots/15185058-Collection-Tasks)
+
+### Contributing
+Feel free to pull request. Please open an issue first to discuss what you would like to change.
+
+
 
 
 
