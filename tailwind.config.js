@@ -6,7 +6,8 @@ export default {
       colors: {
         primary: '#ea2088',
         secundary: '#21212b',
-        hover: '#3d3c4f'
+        hover: '#3d3c4f',
+        back: '#181820'
       },
       screens: {
         wide: '850px'

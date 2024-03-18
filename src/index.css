@@ -3,13 +3,14 @@
 @tailwind utilities;
 
 :root {
+  --dark: #181820;
   font-family: system-ui, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
   color-scheme: dark;
   color: rgba(255, 255, 255, 0.87);
-  background: #181820;
+  background: var(--dark);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -31,7 +32,7 @@ code {
   width: 0;
   height: 0;
   border-style: solid;
- border-width: 0 14.5px 17px 14.5px;
+  border-width: 0 14.5px 17px 14.5px;
   border-color: transparent transparent #262626 transparent;
 }
 
@@ -54,4 +55,33 @@ code {
   to {
     width: 100%;
   }
+}
+
+.active {
+  background: var(--dark);
+  position: relative;
+}
+
+.active::after,
+.active::before {
+  --border-radius: 1.10rem;
+  --secundary: #21212b;
+  content: '';
+  position: absolute;
+  width: var(--border-radius);
+  height: var(--border-radius);
+  right: var(--border-radius);
+  background: var(--secundary);
+}
+
+.active::before {
+  border-radius: 0 0 50% 0;
+  top: calc(var(--border-radius) * -1);
+  box-shadow: 10px 10px 0 10px var(--dark);
+}
+
+.active::after {
+  border-radius: 0 50% 0 0;
+  box-shadow: 10px -10px 0 10px var(--dark);
+  bottom: calc(var(--border-radius) * -1);
 }
