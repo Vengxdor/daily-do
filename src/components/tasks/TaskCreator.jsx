@@ -37,29 +37,6 @@ function TaskCreator ({ collectionId }) {
     // reset
     setModalOpen(false) // toggle modal
     setNewTask('')
-    // store locally
-    const userData = JSON.parse(localStorage.getItem('userData'))
-    if (!userData) return
-
-    userData.collections = userData.collections.map((item) => {
-      if (item.id === collectionId) {
-        return {
-          ...item,
-          tasks: [
-            ...item.tasks,
-            {
-              name: newTasks,
-              isDone: false,
-              id: uniqueId,
-              idCollection: collectionId
-            }
-          ]
-        }
-      }
-      return item
-    })
-
-    localStorage.setItem('userData', JSON.stringify(userData))
   }
 
   return (
