@@ -11,7 +11,7 @@ import ProgressBar from '../ProgressBar'
 export function ListOfCollections () {
   const { listCollections, deleteCollection } = useCollection()
   return (
-    <ul className='w-full pt-7 gap-3 grid grid-cols-2'>
+    <ul className='w-full gap-3 grid grid-cols-2 mt-6'>
       {listCollections.map((collection, index) => {
         // the tasks of the current collection
         const collectionTasks = collection.tasks.filter(

@@ -6,12 +6,12 @@ function DesktopHeader () {
   return (
     <header className='hidden wide:block h-16 bg-secundary border-b border-black '>
       <nav className='w-full h-full flex justify-between items-center p-4'>
-        <div className='flex gap-3 text-xl'>
-          <Link className='flex items-center gap-1.5' to='/dashboard'>
+        <div className='flex gap-5 text-xl'>
+          <Link className='flex items-center gap-1.5 opacity-70 hover:opacity-100 transition-opacity duration-300' to='/dashboard'>
           <DashboardIcon />
             Dashboard
             </Link>
-          <Link className='flex items-center gap-1.5' to='/'>
+          <Link className='flex items-center gap-1.5 opacity-70 hover:opacity-100 transition-opacity duration-300' to='/'>
           <i className="fa-solid fa-folder-open"></i>
             Collections
             </Link>

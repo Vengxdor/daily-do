@@ -10,12 +10,11 @@ function CollectionHome () {
 
       <PageHeader name='Collections' />
       </div>
+      <h1 className='hidden wide:block text-4xl font-semibold my-10'>Collections</h1>
 
       <main>
-        <div className='block wide:hidden'>
 
         <DashCollectionLink />
-        </div>
         <ListOfCollections />
       </main>
     </div>
