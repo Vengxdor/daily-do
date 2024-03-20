@@ -8,10 +8,10 @@ import { CollectionIcon } from './CollectionIcon'
 import { CollectionModal } from './CollectionModal'
 import ProgressBar from '../ProgressBar'
 
-export function ListOfCollections () {
+export function ListOfCollections() {
   const { listCollections, deleteCollection } = useCollection()
   return (
-    <ul className='w-full gap-3 grid grid-cols-2 mt-6'>
+    <ul className='w-full gap-3 grid grid-cols-2 mt-6 justify-center wide:grid-cols-3 '>
       {listCollections.map((collection, index) => {
         // the tasks of the current collection
         const collectionTasks = collection.tasks.filter(
@@ -23,7 +23,7 @@ export function ListOfCollections () {
         ).length
         return (
           <li
-            className=' bg-secundary hover:bg-zinc-700/60 border flex relative justify-between border-white border-opacity-20 cursor-pointer  rounded-xl transition-colors duration-300'
+            className='bg-secundary hover:bg-zinc-700/60 border border-hover flex relative justify-between  cursor-pointer  rounded-xl transition-colors duration-300 '
             key={index}
           >
             <Link

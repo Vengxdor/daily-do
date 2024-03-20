@@ -4,7 +4,7 @@ import ItemsAside from '../ItemsAside'
 function AsideCollections () {
   const [isAsideOpen, setAsideOpen] = useState(() => {
     const storeOpen = JSON.parse(localStorage.getItem('asideOpen'))
-    if (!storeOpen) return false
+    if (JSON.stringify(storeOpen) === 'false') return false
     return storeOpen || true
   })
 
@@ -13,7 +13,7 @@ function AsideCollections () {
   }, [isAsideOpen])
 
   return (
-    <aside className='hidden wide:flex  top-0 h-full '>
+    <aside className='hidden wide:flex top-0 h-[calc(100vh-1.5rem)] '>
       <div
         className={` bg-secundary h-full sticky transition-all duration-300  ${
           isAsideOpen

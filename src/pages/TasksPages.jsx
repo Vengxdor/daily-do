@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom'
 import TaskCreator from '../components/tasks/TaskCreator'
 import TaskList from '../components/tasks/TaskList'
 import { useCollection } from '../hooks/useCollection'
+import AsideCollections from '../components/collection/AsideCollections'
 
 function TasksPages () {
   const { collectionId, collectionName } = useParams()
@@ -14,7 +15,10 @@ function TasksPages () {
   const cTasks = currentCollection?.tasks
 
   return (
-    <div className='z-10 '>
+    <div className='z-10 flex'>
+      
+      <AsideCollections />
+      <div>
       <header className='flex items-center p-7 gap-3'>
         <Link
           className='fa-solid fa-chevron-left p-3 px-4 rounded-full bg-zinc-700/50 '
@@ -38,6 +42,7 @@ function TasksPages () {
               )}
         </div>
       </main>
+          </div>
     </div>
   )
 }
