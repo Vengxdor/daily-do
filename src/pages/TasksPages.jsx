@@ -15,34 +15,35 @@ function TasksPages () {
   const cTasks = currentCollection?.tasks
 
   return (
-    <div className='z-10 flex'>
-      
+    <div className='z-10 flex wide:h-[calc(100vh-4rem)] w-dvw'>
       <AsideCollections />
-      <div>
-      <header className='flex items-center p-7 gap-3'>
-        <Link
-          className='fa-solid fa-chevron-left p-3 px-4 rounded-full bg-zinc-700/50 '
-          to='/'
-        ></Link>
-        <h2 className='text-3xl font-bold'>{collectionName}</h2>
-        <TaskCreator collectionId={collectionId} />
-      </header>
+      <div className='wide:mx-auto w-full wide:flex wide:justify-center'>
+        <section className='wide:min-w-[32rem] lg:min-w-[43rem] xl:min-w-[55rem] 2xl:min-w-[60rem'>
+          <header className='flex items-center p-7 gap-3 '>
+            <Link
+              className='fa-solid fa-chevron-left p-3 px-4 rounded-full bg-zinc-700/50 '
+              to='/'
+            ></Link>
+            <h2 className='text-3xl font-bold'>{collectionName}</h2>
+            <TaskCreator collectionId={collectionId} />
+          </header>
 
-      <main className='px-8'>
-        <span className='opacity-80'>Tasks - {cTasks.length}</span>
-        <div className='overflow-y-auto rounded-lg mt-5 tasks-list'>
-          {cTasks.length !== 0
-            ? (
-            <TaskList tasks={cTasks} />
-              )
-            : (
-            <p className='text-center'>
-              You have no tasks, Try creating one :)
-            </p>
-              )}
-        </div>
-      </main>
-          </div>
+          <main className='px-8 w-full'>
+            <span className='opacity-80'>Tasks - {cTasks.length}</span>
+            <div className='overflow-y-auto rounded-lg mt-5 tasks-list '>
+              {cTasks.length !== 0
+                ? (
+                <TaskList tasks={cTasks} />
+                  )
+                : (
+                <p className='text-center'>
+                  You have no tasks, Try creating one :)
+                </p>
+                  )}
+            </div>
+          </main>
+        </section>
+      </div>
     </div>
   )
 }

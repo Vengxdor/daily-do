@@ -13,7 +13,7 @@ function AsideCollections () {
   }, [isAsideOpen])
 
   return (
-    <aside className='hidden wide:flex top-0 h-[calc(100vh-1.5rem)] '>
+    <aside className='hidden wide:flex top-0 h-full'>
       <div
         className={` bg-secundary h-full sticky transition-all duration-300  ${
           isAsideOpen

@@ -8,7 +8,7 @@ import { CollectionIcon } from './CollectionIcon'
 import { CollectionModal } from './CollectionModal'
 import ProgressBar from '../ProgressBar'
 
-export function ListOfCollections() {
+export function ListOfCollections () {
   const { listCollections, deleteCollection } = useCollection()
   return (
     <ul className='w-full gap-3 grid grid-cols-2 mt-6 justify-center wide:grid-cols-3 '>

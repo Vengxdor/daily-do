@@ -5,7 +5,7 @@ import DashCollectionLink from '../components/DashCollectionLink'
 
 function CollectionHome () {
   return (
-    <div className='w-11/12 mx-auto sm:w-5/6'>
+    <div className='w-11/12 mx-auto sm:w-5/6 md:w-3/4 lg:w-2/3 xl:w-1/2'>
       <div className='block wide:hidden'>
         <PageHeader name='Collections' />
       </div>
