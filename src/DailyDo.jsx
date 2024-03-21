@@ -11,7 +11,7 @@ function DailyDo () {
   return (
     <>
       <DesktopHeader />
-      <div className='wide:flex  wide:items-start w-screen'>
+      <div className='wide:flex  wide:items-start'>
         <Routes>
           <Route path='/' element={<CollectionHome />} />
           <Route

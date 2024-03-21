@@ -7,7 +7,7 @@ import { useUserAccount } from '../hooks/useUserAccount'
 function DashBoard () {
   const { userData } = useUserAccount()
   return (
-    <div className='w-11/12 mx-auto sm:w-5/6 md:w-3/4 lg:w-2/3 xl:w-1/2 '>
+    <div className='w-11/12 mx-auto mb-10 sm:w-5/6 md:w-3/4 lg:w-2/3 xl:w-1/2 '>
       <div className='block wide:hidden'>
         <PageHeader name='Dashboard' />
       </div>
