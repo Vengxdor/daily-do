@@ -16,7 +16,7 @@ function TasksPages () {
   const cTasks = currentCollection?.tasks
 
   return (
-    <div className='z-10 flex wide:h-[calc(100vh-4rem)] w-dvw'>
+    <div className='z-10 flex  w-dvw'>
       <AsideCollections />
       <div className='wide:mx-auto w-full wide:flex wide:justify-center'>
         <section className='wide:min-w-[32rem] lg:min-w-[43rem] xl:min-w-[55rem] '>
