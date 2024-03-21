@@ -6,7 +6,7 @@ import { useUserAccount } from '../hooks/useUserAccount'
 function Account () {
   const { userData, userAccount } = useUserAccount()
   return (
-    <div className='w-11/12 m-auto sm:w-5/6 py-6'>
+    <div className='w-11/12 m-auto sm:w-5/6 py-6 md:w-1/2 lg:w-2/5'>
       <header className='flex items-center  gap-3 '>
         <Link
           className='fa-solid fa-chevron-left p-3 px-4 rounded-full bg-zinc-700/50 '
@@ -22,7 +22,7 @@ function Account () {
         />
         <h2 className='text-2xl'>{userData.username}</h2>
       </article>
-      <main className='w-full bg-secundary rounded-xl p-4'>
+      <main className='w-full bg-secundary rounded-xl p-4 '>
         <ul className='grid gap-7'>
           <li className='flex items-center justify-between'>
             <div className='flex flex-col '>
@@ -49,7 +49,7 @@ function Account () {
           </li>
         </ul>
       </main>
-      <div className='mt-4'>
+      <div className='mt-4 md:flex sm:justify-center'>
         <SignOutBtn />
       </div>
     </div>
