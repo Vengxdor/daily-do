@@ -60,6 +60,7 @@ code {
 .active {
   background: var(--dark);
   position: relative;
+  opacity: 100%;
 }
 
 .active::after,
