@@ -64,13 +64,13 @@ code {
 
 .active::after,
 .active::before {
-  --border-radius: 1.10rem;
+  --border-radius: 1.5rem;
   --secundary: #21212b;
   content: '';
   position: absolute;
   width: var(--border-radius);
   height: var(--border-radius);
-  right: var(--border-radius);
+  right: 0;
   background: var(--secundary);
 }
 

@@ -17,7 +17,7 @@ function AsideCollections () {
       <div
         className={` bg-secundary h-full sticky transition-all duration-300  ${
           isAsideOpen
-            ? 'w-40  opacity-100'
+            ? 'w-56  opacity-100'
             : 'w-1 opacity-0 select-none pointer-events-none'
         }`}
       >
