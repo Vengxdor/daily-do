@@ -2,7 +2,7 @@ import React, { useId, useState } from 'react'
 import LoginHeader from '../../components/LoginHeader'
 import { Link } from 'react-router-dom'
 import { auth } from '../../firebase'
-import { signInWithEmailAndPassword } from 'firebase/auth'
+import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth'
 import { useUserAccount } from '../../hooks/useUserAccount'
 import CreatedDialog from '../../components/CreatedDialog'
 function Login () {
@@ -42,6 +42,16 @@ function Login () {
       }, 3300)
     }
   }
+
+  const handleSignGoogle = async () => {
+    try {
+      const provider = new GoogleAuthProvider()
+      const signUpUser = await signInWithPopup(auth, provider)
+      setUserAccount(signUpUser.user)
+    } catch (error) {
+      console.error(error)
+    }
+  }
   return (
     <div className='h-screen w-screen bg-neutral-950 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]'>
       <div className='w-11/12 m-auto py-5 md:w-8/12 lg:w-6/12 xl:w-4/12 '>
@@ -54,7 +64,7 @@ function Login () {
         <LoginHeader text='Login' />
         <form onSubmit={handleLogin} className='flex flex-col gap-10'>
           <div className='mt-16 flex flex-col gap-3'>
-            <button className=' p-4 bg-secundary/50 border-2 border-secundary rounded-xl flex items-center justify-center gap-2 text-lg'>
+            <button onClick={handleSignGoogle} className=' p-4 bg-secundary/50 border-2 border-secundary rounded-xl flex items-center justify-center gap-2 text-lg'>
               <i className='fa-brands fa-google text-xl'></i>
               Continue with Google
             </button>
