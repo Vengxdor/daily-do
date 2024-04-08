@@ -4,7 +4,7 @@ import Logo from '../components/Logo'
 function NotFound () {
   return (
     <>
-    <header className='p-10'>
+    <header className='p-10 wide:hidden'>
       <Logo />
     </header>
     <main className='w-full flex justify-center items-center h-[65dvh]  flex-col gap-7 px-3 '>
