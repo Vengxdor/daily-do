@@ -5,12 +5,12 @@ import DailyDo from './DailyDo'
 import { useUserAccount } from './hooks/useUserAccount'
 
 function App () {
-  const { isAccountCreated } = useUserAccount()
+  const { userAccount } = useUserAccount()
 
   return (
     <>
       <CollectionProvider>
-        {isAccountCreated ? <DailyDo /> : <LandingPage />}
+        {userAccount ? <DailyDo /> : <LandingPage />}
       </CollectionProvider>
     </>
   )

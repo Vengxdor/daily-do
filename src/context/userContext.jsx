@@ -1,15 +1,23 @@
 /* eslint-disable react/prop-types */
 import { collection, doc, getDocs, query, updateDoc, where } from 'firebase/firestore'
 import React, { createContext, useEffect, useState } from 'react'
-import { db } from '../firebase'
+import { auth, db } from '../firebase'
+import { onAuthStateChanged } from 'firebase/auth'
 
 export const UserAccountContext = createContext()
 
 export function UserAccountProvider ({ children }) {
-  const [userAccount, setUserAccount] = useState(() => {
-    const storageUser = JSON.parse(localStorage.getItem('userAccount'))
-    return storageUser || null
-  })
+  const [userAccount, setUserAccount] = useState(null)
+
+  useEffect(() => {
+    async function getUserAccount () {
+      onAuthStateChanged(auth, (user) => {
+        if (!user) return
+        setUserAccount(user)
+      })
+    }
+    getUserAccount()
+  }, [])
 
   const storageData = JSON.parse(localStorage.getItem('userData'))
   const [userData, setUserData] = useState(() => {
@@ -53,8 +61,6 @@ export function UserAccountProvider ({ children }) {
       }
     }
     getUserData()
-    // Store the userAccount in the loaclStorage every time it changes.
-    localStorage.setItem('userAccount', JSON.stringify(userAccount))
   }, [userAccount])
 
   useEffect(() => {
