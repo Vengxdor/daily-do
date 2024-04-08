@@ -47,6 +47,7 @@ function Login () {
     try {
       const provider = new GoogleAuthProvider()
       const signUpUser = await signInWithPopup(auth, provider)
+      location.pathname = '/'
       setUserAccount(signUpUser.user)
     } catch (error) {
       console.error(error)
@@ -64,7 +65,7 @@ function Login () {
         <LoginHeader text='Login' />
         <form onSubmit={handleLogin} className='flex flex-col gap-10'>
           <div className='mt-16 flex flex-col gap-3'>
-            <button onClick={handleSignGoogle} className=' p-4 bg-secundary/50 border-2 border-secundary rounded-xl flex items-center justify-center gap-2 text-lg'>
+            <button type='button' onClick={handleSignGoogle} className=' p-4 bg-secundary/50 border-2 border-secundary rounded-xl flex items-center justify-center gap-2 text-lg'>
               <i className='fa-brands fa-google text-xl'></i>
               Continue with Google
             </button>
