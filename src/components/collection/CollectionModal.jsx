@@ -92,6 +92,7 @@ export function CollectionModal () {
                       className=' border text-white text-sm rounded-lg focus:ring-primary-600 focus:border-primary block w-full p-2.5 bg-gray-600 border-gray-500 outline-none'
                       placeholder='Type collection name'
                       required=''
+                      autoFocus='on'
                       autoComplete='off'
                     />
                   </div>
