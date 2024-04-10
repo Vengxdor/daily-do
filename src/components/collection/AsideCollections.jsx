@@ -15,7 +15,7 @@ function AsideCollections () {
   return (
     <aside className='hidden wide:flex items-start overflow-y-hidden'>
       <div
-        className={` bg-secundary h-full sticky wide:h-[calc(100vh-4rem)]  transition-all duration-300 ${
+        className={` bg-secundary h-full sticky overflow-y-auto wide:h-[calc(100vh-4rem)]  transition-all duration-300 ${
           isAsideOpen
             ? 'w-56  opacity-100'
             : 'w-1 opacity-0 select-none pointer-events-none'
